@@ -23,7 +23,7 @@ let DATA_CANGWEI = {};
 let DATA_ZHIYA = {};
 
 const BOND_TABLE = require('./bondTable');
-const BOND_NEWS = require('./bondNewsTable');
+// const BOND_NEWS = require('./bondNewsTable');
 const CHART = require('./chart');
 //const BOND_SELECT = require('./bondSelect');
 const URL_WHITE_LIST = ["http://www.chinaclear.cn/zdjs/editor_file/63280dade3884bc18bb39682a7026927.shtml"];

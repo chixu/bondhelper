@@ -420,7 +420,7 @@ function parseTable() {
     }
     //DATA_TABLE[d.id] = d;
   });
-  saveDataTable();
+  // saveDataTable();
   createTable();
 }
 
