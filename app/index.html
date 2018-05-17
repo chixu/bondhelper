@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello World!</title>
+  <script>
+    if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+    }
+  </script>
+  <script src="./lib/jquery-3.2.1.min.js"></script>
+  <script src="./lib/jquery.tablesorter.js"></script>
+  <!-- <script src="./lib/highcharts.js"></script>
+  <script src="./lib/modules/series-label.js"></script>
+  <script src="./lib/modules/exporting.js"></script>
+  <script src="./lib/modules/export-data.js"></script> -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <link rel="stylesheet" href="./lib/w3.css">
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+  <div class="notification" onclick="notificationClicked()">
+
+  </div>
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'Table')">Table</button>
+    <button class="tablinks" onclick="openCity(event, 'Info')">Info</button>
+  </div>
+  <div id="Table" class="tabcontent">
+    <dialog id="dialogbox">
+      <h3 id="dialog_title"></h3>
+      <table style="width:100%">
+        <tr>
+          <td>Hint</td>
+          <td>
+            <input type="text" id="dialog_hint" style="width:100%" />
+          </td>
+        </tr>
+        <tr>
+          <td>Stock Code</td>
+          <td>
+            <input type="text" id="dialog_stockcode" style="width:100%" />
+          </td>
+        </tr>
+        <tr>
+          <td>Info</td>
+          <td>
+            <textarea type="text" id="dialog_info" rows="3" style="width:100%">
+            </textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>Color</td>
+          <td>
+            <span id="dialog_colors">
+              <span class="color-option" style="background-color:#f66" onclick="selectDialogColor()"></span>
+              <span class="color-option" style="background-color:#ffa500" onclick="selectDialogColor()"></span>
+              <span class="color-option" style="background-color:#d3ffce" onclick="selectDialogColor()"></span>
+            </span>
+          </td>
+        </tr>
+      </table>
+      <br/>
+      <button id="dialog_save">Save</button>
+      <button id="dialog_exit">Close</button>
+      <button id="dialog_delete">Delete</button>
+    </dialog>
+    <textarea id="input" type="text" rows="3">
+    </textarea>
+    <br/>
+    <input type="button" onclick="fundSelect()" value="Select">
+    <input type="button" onclick="parseTable()" value="Parse">
+    <input type="button" onclick="updateTableInfo()" value="Update Info">
+    <br/>
+    <div id="filter">
+      <table>
+        <tr>
+          <td>黑名单</td>
+          <td>
+            <input type="button" value="保存" />
+          </td>
+          <td/>
+          <td>
+            <textarea id="idblacklist" type="text" rows="1">
+            </textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>非Q债</td>
+          <td>
+            <input id="isq" type="checkbox">
+          </td>
+        </tr>
+        <tr>
+          <td>持有</td>
+          <td>
+            <input id="isinstock" type="checkbox">
+          </td>
+        </tr>
+        <tr>
+          <td>成交</td>
+          <td>
+            <input class="short" id="chengjiaofrom" type="text">
+          </td>
+          <td>-</td>
+          <td>
+            <input class="short" id="chengjiaoto" type="text">
+          </td>
+        </tr>
+        <tr>
+          <td>年限</td>
+          <td>
+            <input class="short" id="nianxianfrom" type="text" value="0.01">
+          </td>
+          <td>-</td>
+          <td>
+            <input class="short" id="nianxianto" type="text" value="0.5">
+          </td>
+        </tr>
+        <tr>
+          <td>税前</td>
+          <td>
+            <input class="short" id="shuiqianfrom" type="text" value="7">
+          </td>
+          <td>-</td>
+          <td>
+            <input class="short" id="shuiqianto" type="text">
+          </td>
+        </tr>
+        <tr>
+          <td>税前+回购</td>
+          <td>
+            <input class="short" id="shuiqianhuigoufrom" type="text">
+          </td>
+          <td>-</td>
+          <td>
+            <input class="short" id="shuiqianhuigouto" type="text">
+          </td>
+        </tr>
+        <tr>
+          <td>信用</td>
+          <td>
+            <input class="short" id="xinyong" type="text" value="AA-">
+          </td>
+        </tr>
+      </table>
+      <input type="button" onclick="sortTable()" value="Filter">
+      <input type="button" onclick="updateTableAllRows()" value="Update Table">
+    </div>
+    <table id="table" class="tablesorter" style="font-size:13px">
+    </table>
+  </div>
+
+  <div id="Info" class="tabcontent">
+    <div id="tosend">
+      <h4>仓位</h4>
+      <div id="cangwei" class="w3-ul">
+      </div>
+      <div id="container"></div>
+      <div id="container2"></div>
+      <h4>标准券</h4>
+      <div id="bondResult" class="w3-ul">
+      </div>
+      <h4>公告</h4>
+      <div id="bondNews" class="w3-ul">
+      </div>
+    </div>
+    <input type="button" onclick="getNormalBond()" value="计算标准券">
+    <input type="button" onclick="sendEmail()" value="发送邮件">
+  </div>
+
+  <script src="./app.js"></script>
+  <script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      if (evt)
+        evt.currentTarget.className += " active";
+    }
+    openCity(undefined, 'Table');
+  </script>
+</body>
+
+</html>

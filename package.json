@@ -1,0 +1,32 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build-win": "electron-packager . lctrading --overwrite --platform=win32 --ignore=lctrading-win32-x64",
+    "build-osx": "electron-packager . lctrading --overwrite"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-packager": "^8.6.0"
+  },
+  "dependencies": {
+    "download": "^6.2.5",
+    "line-by-line": "^0.1.6",
+    "nodemailer": "^4.6.3",
+    "randgen": "^0.1.0",
+    "sendmail": "^1.4.1"
+  }
+}

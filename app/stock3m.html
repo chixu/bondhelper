@@ -1,0 +1,3374 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  <table id="dbtable">
+    <thead>
+      <tr>
+        <th>比较</th>
+        <th>序号</th>
+        <th col="dm" class="tworow">
+          <a class="">
+            <span class="ades">基金
+              <br> 代码
+            </span>
+            <span class="showway"></span>
+          </a>
+        </th>
+        <th col="jc">
+          <a class="">基金简称</a>
+        </th>
+        <th col="jzrq">
+          <a class="">日期</a>
+        </th>
+        <th col="dwjz">
+          <a class="">单位净值</a>
+        </th>
+        <th col="ljjz">
+          <a class="">累计净值</a>
+        </th>
+        <th col="rzdf">
+          <a class="">日增长率</a>
+        </th>
+        <th col="zzf">
+          <a class="">近1周</a>
+        </th>
+        <th col="1yzf">
+          <a class="">近1月</a>
+        </th>
+        <th col="3yzf">
+          <a class="desc">近3月</a>
+        </th>
+        <th col="6yzf">
+          <a class="">近6月</a>
+        </th>
+        <th col="1nzf">
+          <a class="">近1年</a>
+        </th>
+        <th col="2nzf">
+          <a class="">近2年</a>
+        </th>
+        <th col="3nzf">
+          <a class="">近3年</a>
+        </th>
+        <th col="jnzf">
+          <a class="">今年来</a>
+        </th>
+        <th col="lnzf" style="white-space: nowrap;">
+          <a class="">成立来</a>
+        </th>
+        <th col="qjzf" id="sortclass" class="datespan">
+          <div style="position: relative" col="qjzf">
+            <a onmouseover="show_tip();" class="">自定义</a>
+            <b class="cal" id="calen"></b>
+          </div>
+        </th>
+        <th class="yh_head">手续费</th>
+        <th>
+          <label style="text-align: center; vertical-align: middle">
+            <input id="onlysale" style="margin-top: 0px" type="radio" value="1" name="showsale" class="md" checked="checked">
+            <span class="md">可购</span>
+          </label>
+          <br>
+          <label style="text-align: center; vertical-align: middle;">
+            <input style="margin-top: 0px" type="radio" value="0" name="showsale" class="md" id="allfund" checked="">
+            <span class="md">全部</span>
+          </label>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          <input id="chk160628" type="checkbox">
+        </td>
+        <td>1</td>
+        <td>
+          <a href="http://fund.eastmoney.com/160628.html">160628</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/160628.html" title="鹏华地产分级">鹏华地产分级</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3290</td>
+        <td class="ping">1.9170</td>
+        <td class="zhang">1.61%</td>
+        <td class="die">-2.49%</td>
+        <td class="zhang">17.28%</td>
+        <td class="zhang">21.27%</td>
+        <td class="zhang">27.31%</td>
+        <td class="zhang">37.11%</td>
+        <td class="zhang">51.56%</td>
+        <td class="zhang">48.69%</td>
+        <td class="zhang">17.28%</td>
+        <td class="zhang">104.38%</td>
+        <td class="zhang">37.53%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_160628.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=160628" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk161721" type="checkbox">
+        </td>
+        <td>2</td>
+        <td>
+          <a href="http://fund.eastmoney.com/161721.html">161721</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/161721.html" title="招商沪深300地产指数分级">招商沪深30</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">0.9220</td>
+        <td class="ping">1.5080</td>
+        <td class="zhang">1.88%</td>
+        <td class="die">-1.50%</td>
+        <td class="zhang">17.45%</td>
+        <td class="zhang">20.49%</td>
+        <td class="zhang">21.57%</td>
+        <td class="zhang">31.68%</td>
+        <td class="zhang">43.50%</td>
+        <td class="zhang">33.51%</td>
+        <td class="zhang">17.45%</td>
+        <td class="zhang">51.94%</td>
+        <td class="zhang">32.23%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_161721.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=161721" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk160218" type="checkbox">
+        </td>
+        <td>3</td>
+        <td>
+          <a href="http://fund.eastmoney.com/160218.html">160218</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/160218.html" title="国泰国证房地产行业指数分级">国泰国证房地</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">0.9029</td>
+        <td class="ping">2.0649</td>
+        <td class="zhang">1.46%</td>
+        <td class="die">-3.04%</td>
+        <td class="zhang">15.78%</td>
+        <td class="zhang">18.40%</td>
+        <td class="zhang">22.38%</td>
+        <td class="zhang">27.05%</td>
+        <td class="zhang">38.40%</td>
+        <td class="zhang">36.42%</td>
+        <td class="zhang">15.78%</td>
+        <td class="zhang">112.18%</td>
+        <td class="zhang">27.52%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_160218.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=160218" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk004642" type="checkbox">
+        </td>
+        <td>4</td>
+        <td>
+          <a href="http://fund.eastmoney.com/004642.html">004642</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/004642.html" title="南方房地产ETF联接A">南方房地产E</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1413</td>
+        <td class="ping">1.1413</td>
+        <td class="zhang">0.79%</td>
+        <td class="die">-2.28%</td>
+        <td class="zhang">12.74%</td>
+        <td class="zhang">14.54%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">12.74%</td>
+        <td class="zhang">14.13%</td>
+        <td class="zhang">14.13%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_004642.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=004642" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk004643" type="checkbox">
+        </td>
+        <td>5</td>
+        <td>
+          <a href="http://fund.eastmoney.com/004643.html">004643</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/004643.html" title="南方房地产ETF联接C">南方房地产E</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1394</td>
+        <td class="ping">1.1394</td>
+        <td class="zhang">0.79%</td>
+        <td class="die">-2.28%</td>
+        <td class="zhang">12.71%</td>
+        <td class="zhang">14.43%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">12.71%</td>
+        <td class="zhang">13.94%</td>
+        <td class="zhang">13.94%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_004643.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=004643" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001047" type="checkbox">
+        </td>
+        <td>6</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001047.html">001047</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001047.html" title="光大国企改革股票">光大国企改革</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3440</td>
+        <td class="ping">1.3440</td>
+        <td class="zhang">0.60%</td>
+        <td class="die">-1.10%</td>
+        <td class="zhang">8.39%</td>
+        <td class="zhang">14.38%</td>
+        <td class="zhang">23.08%</td>
+        <td class="zhang">38.56%</td>
+        <td class="zhang">83.61%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.39%</td>
+        <td class="zhang">34.40%</td>
+        <td class="zhang">39.13%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001047.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001047" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001594" type="checkbox">
+        </td>
+        <td>7</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001594.html">001594</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001594.html" title="天弘中证银行指数A">天弘中证银行</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.2565</td>
+        <td class="ping">1.2565</td>
+        <td class="zhang">1.71%</td>
+        <td class="die">-1.02%</td>
+        <td class="zhang">11.87%</td>
+        <td class="zhang">14.09%</td>
+        <td class="zhang">14.50%</td>
+        <td class="zhang">27.42%</td>
+        <td class="zhang">48.05%</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.87%</td>
+        <td class="zhang">25.65%</td>
+        <td class="zhang">28.78%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001594.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001594" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001595" type="checkbox">
+        </td>
+        <td>8</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001595.html">001595</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001595.html" title="天弘中证银行指数C">天弘中证银行</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.2477</td>
+        <td class="ping">1.2477</td>
+        <td class="zhang">1.70%</td>
+        <td class="die">-1.04%</td>
+        <td class="zhang">11.84%</td>
+        <td class="zhang">14.02%</td>
+        <td class="zhang">14.35%</td>
+        <td class="zhang">27.12%</td>
+        <td class="zhang">47.29%</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.84%</td>
+        <td class="zhang">24.77%</td>
+        <td class="zhang">28.48%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_001595.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001595" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk481012" type="checkbox">
+        </td>
+        <td>9</td>
+        <td>
+          <a href="http://fund.eastmoney.com/481012.html">481012</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/481012.html" title="工银深证红利联接">工银深证红利</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.5344</td>
+        <td class="ping">1.7126</td>
+        <td class="zhang">1.38%</td>
+        <td class="die">-3.12%</td>
+        <td class="zhang">8.62%</td>
+        <td class="zhang">13.99%</td>
+        <td class="zhang">26.59%</td>
+        <td class="zhang">54.77%</td>
+        <td class="zhang">79.23%</td>
+        <td class="zhang">75.54%</td>
+        <td class="zhang">8.62%</td>
+        <td class="zhang">81.74%</td>
+        <td class="zhang">55.71%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_481012.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=481012" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk004597" type="checkbox">
+        </td>
+        <td>10</td>
+        <td>
+          <a href="http://fund.eastmoney.com/004597.html">004597</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/004597.html" title="南方银行ETF联接A">南方银行ET</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1344</td>
+        <td class="ping">1.1344</td>
+        <td class="zhang">1.68%</td>
+        <td class="die">-1.12%</td>
+        <td class="zhang">11.85%</td>
+        <td class="zhang">13.88%</td>
+        <td class="zhang">13.27%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.85%</td>
+        <td class="zhang">13.44%</td>
+        <td class="zhang">13.44%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_004597.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=004597" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk110003" type="checkbox">
+        </td>
+        <td>11</td>
+        <td>
+          <a href="http://fund.eastmoney.com/110003.html">110003</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/110003.html" title="易方达上证50指数A">易方达上证5</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.5777</td>
+        <td class="ping">3.4477</td>
+        <td class="zhang">1.91%</td>
+        <td class="die">-1.66%</td>
+        <td class="zhang">8.07%</td>
+        <td class="zhang">13.86%</td>
+        <td class="zhang">27.46%</td>
+        <td class="zhang">48.31%</td>
+        <td class="zhang">83.75%</td>
+        <td class="zhang">68.24%</td>
+        <td class="zhang">8.07%</td>
+        <td class="zhang">385.59%</td>
+        <td class="zhang">49.81%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_110003.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=110003" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk160517" type="checkbox">
+        </td>
+        <td>12</td>
+        <td>
+          <a href="http://fund.eastmoney.com/160517.html">160517</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/160517.html" title="博时中证银行指数分级">博时中证银行</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1244</td>
+        <td class="ping">1.2040</td>
+        <td class="zhang">1.65%</td>
+        <td class="die">-1.22%</td>
+        <td class="zhang">11.81%</td>
+        <td class="zhang">13.83%</td>
+        <td class="zhang">14.73%</td>
+        <td class="zhang">29.31%</td>
+        <td class="zhang">53.23%</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.81%</td>
+        <td class="zhang">20.40%</td>
+        <td class="zhang">30.72%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_160517.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=160517" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk004598" type="checkbox">
+        </td>
+        <td>13</td>
+        <td>
+          <a href="http://fund.eastmoney.com/004598.html">004598</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/004598.html" title="南方银行ETF联接C">南方银行ET</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1317</td>
+        <td class="ping">1.1317</td>
+        <td class="zhang">1.68%</td>
+        <td class="die">-1.12%</td>
+        <td class="zhang">11.82%</td>
+        <td class="zhang">13.77%</td>
+        <td class="zhang">13.05%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.82%</td>
+        <td class="zhang">13.17%</td>
+        <td class="zhang">13.17%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_004598.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=004598" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk161723" type="checkbox">
+        </td>
+        <td>14</td>
+        <td>
+          <a href="http://fund.eastmoney.com/161723.html">161723</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/161723.html" title="招商中证银行指数分级">招商中证银行</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1340</td>
+        <td class="ping">1.1940</td>
+        <td class="zhang">1.70%</td>
+        <td class="die">-1.13%</td>
+        <td class="zhang">11.72%</td>
+        <td class="zhang">13.57%</td>
+        <td class="zhang">14.24%</td>
+        <td class="zhang">27.14%</td>
+        <td class="zhang">54.00%</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.72%</td>
+        <td class="zhang">20.97%</td>
+        <td class="zhang">28.55%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_161723.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=161723" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk110022" type="checkbox">
+        </td>
+        <td>15</td>
+        <td>
+          <a href="http://fund.eastmoney.com/110022.html">110022</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/110022.html" title="易方达消费行业">易方达消费行</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">2.4850</td>
+        <td class="ping">2.4850</td>
+        <td class="zhang">1.64%</td>
+        <td class="die">-1.82%</td>
+        <td class="zhang">6.61%</td>
+        <td class="zhang">13.52%</td>
+        <td class="zhang">30.79%</td>
+        <td class="zhang">69.51%</td>
+        <td class="zhang">130.52%</td>
+        <td class="zhang">126.11%</td>
+        <td class="zhang">6.61%</td>
+        <td class="zhang">148.50%</td>
+        <td class="zhang">70.67%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_110022.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=110022" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001651" type="checkbox">
+        </td>
+        <td>16</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001651.html">001651</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001651.html" title="工银新蓝筹股票">工银新蓝筹股</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.5140</td>
+        <td class="ping">1.5140</td>
+        <td class="zhang">0.73%</td>
+        <td class="die">-0.85%</td>
+        <td class="zhang">9.31%</td>
+        <td class="zhang">13.49%</td>
+        <td class="zhang">22.29%</td>
+        <td class="zhang">39.54%</td>
+        <td class="zhang">64.39%</td>
+        <td class="ping">---</td>
+        <td class="zhang">9.31%</td>
+        <td class="zhang">51.40%</td>
+        <td class="zhang">40.58%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001651.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001651" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk161121" type="checkbox">
+        </td>
+        <td>17</td>
+        <td>
+          <a href="http://fund.eastmoney.com/161121.html">161121</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/161121.html" title="易方达银行分级">易方达银行分</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.0758</td>
+        <td class="ping">---</td>
+        <td class="zhang">1.63%</td>
+        <td class="die">-1.24%</td>
+        <td class="zhang">11.63%</td>
+        <td class="zhang">13.48%</td>
+        <td class="zhang">13.91%</td>
+        <td class="zhang">26.40%</td>
+        <td class="zhang">53.08%</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.63%</td>
+        <td class="zhang">14.14%</td>
+        <td class="zhang">27.73%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_161121.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=161121" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk002121" type="checkbox">
+        </td>
+        <td>18</td>
+        <td>
+          <a href="http://fund.eastmoney.com/002121.html">002121</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/002121.html" title="广发沪港深新起点股票">广发沪港深新</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.5480</td>
+        <td class="ping">1.5480</td>
+        <td class="zhang">1.18%</td>
+        <td class="die">-1.78%</td>
+        <td class="zhang">6.54%</td>
+        <td class="zhang">13.24%</td>
+        <td class="zhang">21.22%</td>
+        <td class="zhang">52.21%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">6.54%</td>
+        <td class="zhang">54.80%</td>
+        <td class="zhang">51.17%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_002121.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=002121" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk160418" type="checkbox">
+        </td>
+        <td>19</td>
+        <td>
+          <a href="http://fund.eastmoney.com/160418.html">160418</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/160418.html" title="华安中证银行指数分级">华安中证银行</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">0.9731</td>
+        <td class="ping">1.0445</td>
+        <td class="zhang">1.65%</td>
+        <td class="die">-1.26%</td>
+        <td class="zhang">11.82%</td>
+        <td class="zhang">13.20%</td>
+        <td class="zhang">13.18%</td>
+        <td class="zhang">24.99%</td>
+        <td class="zhang">46.29%</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.82%</td>
+        <td class="zhang">6.05%</td>
+        <td class="zhang">26.33%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_160418.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=160418" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even" style="background-color: rgb(255, 255, 255);">
+        <td>
+          <input id="chk161029" type="checkbox">
+        </td>
+        <td>20</td>
+        <td>
+          <a href="http://fund.eastmoney.com/161029.html">161029</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/161029.html" title="富国中证银行指数分级">富国中证银行</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1560</td>
+        <td class="ping">1.2180</td>
+        <td class="zhang">1.76%</td>
+        <td class="die">-1.37%</td>
+        <td class="zhang">11.26%</td>
+        <td class="zhang">13.16%</td>
+        <td class="zhang">13.27%</td>
+        <td class="zhang">24.10%</td>
+        <td class="zhang">49.00%</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.26%</td>
+        <td class="zhang">23.27%</td>
+        <td class="zhang">25.42%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_161029.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=161029" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="" style="background-color: rgb(255, 255, 255);">
+        <td>
+          <input id="chk001556" type="checkbox">
+        </td>
+        <td>21</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001556.html">001556</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001556.html" title="天弘量化驱动股票A">天弘量化驱动</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">0.8995</td>
+        <td class="ping">0.8995</td>
+        <td class="die">-0.90%</td>
+        <td class="die">-2.63%</td>
+        <td class="zhang">12.17%</td>
+        <td class="zhang">13.09%</td>
+        <td class="zhang">15.78%</td>
+        <td class="zhang">16.82%</td>
+        <td class="zhang">29.28%</td>
+        <td class="ping">---</td>
+        <td class="zhang">12.17%</td>
+        <td class="die">-10.05%</td>
+        <td class="zhang">17.20%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001556.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001556" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even" style="background-color: rgb(255, 255, 255);">
+        <td>
+          <input id="chk501301" type="checkbox">
+        </td>
+        <td>22</td>
+        <td>
+          <a href="http://fund.eastmoney.com/501301.html">501301</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/501301.html" title="华宝香港大盘">华宝香港大盘</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.2867</td>
+        <td class="ping">1.2867</td>
+        <td class="zhang">0.88%</td>
+        <td class="die">-1.39%</td>
+        <td class="zhang">9.78%</td>
+        <td class="zhang">13.07%</td>
+        <td class="zhang">20.71%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">9.78%</td>
+        <td class="zhang">28.66%</td>
+        <td class="zhang">28.66%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_501301.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=501301" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001557" type="checkbox">
+        </td>
+        <td>23</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001557.html">001557</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001557.html" title="天弘量化驱动股票C">天弘量化驱动</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">0.8930</td>
+        <td class="ping">0.8930</td>
+        <td class="die">-0.90%</td>
+        <td class="die">-2.64%</td>
+        <td class="zhang">12.14%</td>
+        <td class="zhang">13.01%</td>
+        <td class="zhang">15.64%</td>
+        <td class="zhang">16.53%</td>
+        <td class="zhang">28.62%</td>
+        <td class="ping">---</td>
+        <td class="zhang">12.14%</td>
+        <td class="die">-10.70%</td>
+        <td class="zhang">16.90%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_001557.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001557" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk168205" type="checkbox">
+        </td>
+        <td>24</td>
+        <td>
+          <a href="http://fund.eastmoney.com/168205.html">168205</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/168205.html" title="中融中证银行指数分级">中融中证银行</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">0.9990</td>
+        <td class="ping">1.0710</td>
+        <td class="zhang">1.63%</td>
+        <td class="die">-1.28%</td>
+        <td class="zhang">11.62%</td>
+        <td class="zhang">12.95%</td>
+        <td class="zhang">12.58%</td>
+        <td class="zhang">23.67%</td>
+        <td class="zhang">45.45%</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.62%</td>
+        <td class="zhang">8.63%</td>
+        <td class="zhang">25.02%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_168205.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=168205" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk310398" type="checkbox">
+        </td>
+        <td>25</td>
+        <td>
+          <a href="http://fund.eastmoney.com/310398.html">310398</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/310398.html" title="申万菱信沪深300价值指数">申万菱信沪深</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.7919</td>
+        <td class="ping">1.7919</td>
+        <td class="zhang">1.28%</td>
+        <td class="die">-1.20%</td>
+        <td class="zhang">9.38%</td>
+        <td class="zhang">12.93%</td>
+        <td class="zhang">20.50%</td>
+        <td class="zhang">43.46%</td>
+        <td class="zhang">76.52%</td>
+        <td class="zhang">61.35%</td>
+        <td class="zhang">9.38%</td>
+        <td class="zhang">79.19%</td>
+        <td class="zhang">44.67%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_310398.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=310398" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk519671" type="checkbox">
+        </td>
+        <td>26</td>
+        <td>
+          <a href="http://fund.eastmoney.com/519671.html">519671</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/519671.html" title="银河沪深300价值">银河沪深30</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.7480</td>
+        <td class="ping">1.7480</td>
+        <td class="zhang">1.51%</td>
+        <td class="die">-1.13%</td>
+        <td class="zhang">9.46%</td>
+        <td class="zhang">12.85%</td>
+        <td class="zhang">20.47%</td>
+        <td class="zhang">42.58%</td>
+        <td class="zhang">75.33%</td>
+        <td class="zhang">55.38%</td>
+        <td class="zhang">9.46%</td>
+        <td class="zhang">74.80%</td>
+        <td class="zhang">43.75%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_519671.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=519671" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk000835" type="checkbox">
+        </td>
+        <td>27</td>
+        <td>
+          <a href="http://fund.eastmoney.com/000835.html">000835</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/000835.html" title="华润元大富时中国A50指数">华润元大富时</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.9110</td>
+        <td class="ping">1.9110</td>
+        <td class="zhang">1.33%</td>
+        <td class="die">-2.25%</td>
+        <td class="zhang">8.70%</td>
+        <td class="zhang">12.81%</td>
+        <td class="zhang">23.77%</td>
+        <td class="zhang">42.61%</td>
+        <td class="zhang">72.01%</td>
+        <td class="zhang">43.15%</td>
+        <td class="zhang">8.70%</td>
+        <td class="zhang">91.10%</td>
+        <td class="zhang">44.01%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_000835.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=000835" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk160631" type="checkbox">
+        </td>
+        <td>28</td>
+        <td>
+          <a href="http://fund.eastmoney.com/160631.html">160631</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/160631.html" title="鹏华银行分级">鹏华银行分级</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.0630</td>
+        <td class="ping">1.1230</td>
+        <td class="zhang">1.63%</td>
+        <td class="die">-1.30%</td>
+        <td class="zhang">11.66%</td>
+        <td class="zhang">12.80%</td>
+        <td class="zhang">12.34%</td>
+        <td class="zhang">23.42%</td>
+        <td class="zhang">45.68%</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.66%</td>
+        <td class="zhang">13.75%</td>
+        <td class="zhang">24.83%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_160631.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=160631" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk160716" type="checkbox">
+        </td>
+        <td>29</td>
+        <td>
+          <a href="http://fund.eastmoney.com/160716.html">160716</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/160716.html" title="嘉实基本面50">嘉实基本面5</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.7106</td>
+        <td class="ping">1.7106</td>
+        <td class="zhang">1.12%</td>
+        <td class="die">-1.82%</td>
+        <td class="zhang">10.03%</td>
+        <td class="zhang">12.33%</td>
+        <td class="zhang">17.52%</td>
+        <td class="zhang">36.14%</td>
+        <td class="zhang">73.67%</td>
+        <td class="zhang">66.94%</td>
+        <td class="zhang">10.03%</td>
+        <td class="zhang">71.06%</td>
+        <td class="zhang">37.46%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_160716.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=160716" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001725" type="checkbox">
+        </td>
+        <td>30</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001725.html">001725</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001725.html" title="汇添富高端制造股票">汇添富高端制</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4700</td>
+        <td class="ping">1.4700</td>
+        <td class="zhang">0.82%</td>
+        <td class="die">-2.07%</td>
+        <td class="zhang">8.17%</td>
+        <td class="zhang">12.30%</td>
+        <td class="zhang">30.32%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.17%</td>
+        <td class="zhang">47.00%</td>
+        <td class="zhang">47.00%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001725.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001725" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk164508" type="checkbox">
+        </td>
+        <td>31</td>
+        <td>
+          <a href="http://fund.eastmoney.com/164508.html">164508</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/164508.html" title="国富中证100指数增强分级">国富中证10</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1250</td>
+        <td class="ping">1.1980</td>
+        <td class="zhang">1.26%</td>
+        <td class="die">-2.00%</td>
+        <td class="zhang">8.86%</td>
+        <td class="zhang">12.26%</td>
+        <td class="zhang">23.98%</td>
+        <td class="zhang">42.37%</td>
+        <td class="zhang">69.97%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.86%</td>
+        <td class="zhang">22.20%</td>
+        <td class="zhang">43.44%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_164508.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=164508" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001605" type="checkbox">
+        </td>
+        <td>32</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001605.html">001605</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001605.html" title="国富沪港深成长精选股票">国富沪港深成</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.2220</td>
+        <td class="ping">1.2220</td>
+        <td class="zhang">0.74%</td>
+        <td class="die">-2.24%</td>
+        <td class="zhang">6.17%</td>
+        <td class="zhang">12.21%</td>
+        <td class="zhang">28.36%</td>
+        <td class="zhang">38.39%</td>
+        <td class="zhang">22.20%</td>
+        <td class="ping">---</td>
+        <td class="zhang">6.17%</td>
+        <td class="zhang">22.20%</td>
+        <td class="zhang">38.86%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001605.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001605" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk501050" type="checkbox">
+        </td>
+        <td>33</td>
+        <td>
+          <a href="http://fund.eastmoney.com/501050.html">501050</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/501050.html" title="华夏上证50AH优选指数">华夏上证50</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3240</td>
+        <td class="ping">1.3240</td>
+        <td class="zhang">1.38%</td>
+        <td class="die">-1.93%</td>
+        <td class="zhang">10.15%</td>
+        <td class="zhang">12.20%</td>
+        <td class="zhang">18.96%</td>
+        <td class="zhang">34.01%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">10.15%</td>
+        <td class="zhang">32.40%</td>
+        <td class="zhang">34.69%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_501050.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=501050" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk540012" type="checkbox">
+        </td>
+        <td>34</td>
+        <td>
+          <a href="http://fund.eastmoney.com/540012.html">540012</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/540012.html" title="汇丰晋信恒生龙头指数A">汇丰晋信恒生</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.7345</td>
+        <td class="ping">2.1045</td>
+        <td class="zhang">0.93%</td>
+        <td class="die">-1.56%</td>
+        <td class="zhang">8.74%</td>
+        <td class="zhang">12.11%</td>
+        <td class="zhang">23.92%</td>
+        <td class="zhang">49.59%</td>
+        <td class="zhang">91.99%</td>
+        <td class="zhang">65.81%</td>
+        <td class="zhang">8.74%</td>
+        <td class="zhang">118.49%</td>
+        <td class="zhang">50.90%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_540012.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=540012" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk240016" type="checkbox">
+        </td>
+        <td>35</td>
+        <td>
+          <a href="http://fund.eastmoney.com/240016.html">240016</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/240016.html" title="华宝上证180价值联接">华宝上证18</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.9530</td>
+        <td class="ping">1.9830</td>
+        <td class="zhang">1.09%</td>
+        <td class="die">-0.86%</td>
+        <td class="zhang">9.60%</td>
+        <td class="zhang">12.11%</td>
+        <td class="zhang">16.46%</td>
+        <td class="zhang">34.04%</td>
+        <td class="zhang">61.94%</td>
+        <td class="zhang">46.40%</td>
+        <td class="zhang">9.60%</td>
+        <td class="zhang">100.78%</td>
+        <td class="zhang">35.44%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_240016.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=240016" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk000248" type="checkbox">
+        </td>
+        <td>36</td>
+        <td>
+          <a href="http://fund.eastmoney.com/000248.html">000248</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/000248.html" title="汇添富中证主要消费ETF联接">汇添富中证主</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.6430</td>
+        <td class="ping">1.6430</td>
+        <td class="zhang">1.42%</td>
+        <td class="die">-2.21%</td>
+        <td class="zhang">5.25%</td>
+        <td class="zhang">12.11%</td>
+        <td class="zhang">34.06%</td>
+        <td class="zhang">61.55%</td>
+        <td class="zhang">103.85%</td>
+        <td class="ping">---</td>
+        <td class="zhang">5.25%</td>
+        <td class="zhang">64.30%</td>
+        <td class="zhang">62.10%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_000248.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=000248" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk161211" type="checkbox">
+        </td>
+        <td>37</td>
+        <td>
+          <a href="http://fund.eastmoney.com/161211.html">161211</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/161211.html" title="国投沪深300金融地产联接">国投沪深30</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.7257</td>
+        <td class="ping">1.7257</td>
+        <td class="zhang">1.08%</td>
+        <td class="die">-2.49%</td>
+        <td class="zhang">10.35%</td>
+        <td class="zhang">11.92%</td>
+        <td class="zhang">16.92%</td>
+        <td class="zhang">30.33%</td>
+        <td class="zhang">55.82%</td>
+        <td class="zhang">31.62%</td>
+        <td class="zhang">10.35%</td>
+        <td class="zhang">72.57%</td>
+        <td class="zhang">31.65%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_161211.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=161211" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk530015" type="checkbox">
+        </td>
+        <td>38</td>
+        <td>
+          <a href="http://fund.eastmoney.com/530015.html">530015</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/530015.html" title="建信深证60联接">建信深证60</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">2.1456</td>
+        <td class="ping">2.1456</td>
+        <td class="zhang">1.00%</td>
+        <td class="die">-2.91%</td>
+        <td class="zhang">8.63%</td>
+        <td class="zhang">11.88%</td>
+        <td class="zhang">23.58%</td>
+        <td class="zhang">48.27%</td>
+        <td class="zhang">73.02%</td>
+        <td class="zhang">78.90%</td>
+        <td class="zhang">8.63%</td>
+        <td class="zhang">114.56%</td>
+        <td class="zhang">49.61%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_530015.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=530015" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001008" type="checkbox">
+        </td>
+        <td>39</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001008.html">001008</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001008.html" title="工银国企改革股票">工银国企改革</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.2300</td>
+        <td class="ping">1.2300</td>
+        <td class="zhang">1.49%</td>
+        <td class="die">-0.57%</td>
+        <td class="zhang">8.66%</td>
+        <td class="zhang">11.62%</td>
+        <td class="zhang">19.88%</td>
+        <td class="zhang">37.74%</td>
+        <td class="zhang">54.14%</td>
+        <td class="zhang">22.88%</td>
+        <td class="zhang">8.66%</td>
+        <td class="zhang">23.00%</td>
+        <td class="zhang">38.51%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001008.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001008" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk240019" type="checkbox">
+        </td>
+        <td>40</td>
+        <td>
+          <a href="http://fund.eastmoney.com/240019.html">240019</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/240019.html" title="华宝上证180成长联接">华宝上证18</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.8930</td>
+        <td class="ping">1.8930</td>
+        <td class="zhang">1.28%</td>
+        <td class="die">-1.76%</td>
+        <td class="zhang">7.43%</td>
+        <td class="zhang">11.48%</td>
+        <td class="zhang">20.65%</td>
+        <td class="zhang">33.88%</td>
+        <td class="zhang">59.75%</td>
+        <td class="zhang">40.64%</td>
+        <td class="zhang">7.43%</td>
+        <td class="zhang">89.30%</td>
+        <td class="zhang">34.93%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_240019.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=240019" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk502040" type="checkbox">
+        </td>
+        <td>41</td>
+        <td>
+          <a href="http://fund.eastmoney.com/502040.html">502040</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/502040.html" title="长盛上证50指数分级">长盛上证50</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.2690</td>
+        <td class="ping">---</td>
+        <td class="zhang">1.20%</td>
+        <td class="die">-1.78%</td>
+        <td class="zhang">8.55%</td>
+        <td class="zhang">11.45%</td>
+        <td class="zhang">19.79%</td>
+        <td class="zhang">35.58%</td>
+        <td class="zhang">50.94%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.55%</td>
+        <td class="zhang">34.34%</td>
+        <td class="zhang">36.86%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_502040.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=502040" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk519027" type="checkbox">
+        </td>
+        <td>42</td>
+        <td>
+          <a href="http://fund.eastmoney.com/519027.html">519027</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/519027.html" title="海富通上证周期联接">海富通上证周</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4120</td>
+        <td class="ping">1.4120</td>
+        <td class="zhang">1.15%</td>
+        <td class="die">-1.60%</td>
+        <td class="zhang">8.78%</td>
+        <td class="zhang">11.36%</td>
+        <td class="zhang">14.98%</td>
+        <td class="zhang">26.75%</td>
+        <td class="zhang">45.72%</td>
+        <td class="zhang">20.48%</td>
+        <td class="zhang">8.78%</td>
+        <td class="zhang">41.20%</td>
+        <td class="zhang">28.13%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_519027.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=519027" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk213010" type="checkbox">
+        </td>
+        <td>43</td>
+        <td>
+          <a href="http://fund.eastmoney.com/213010.html">213010</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/213010.html" title="宝盈中证100增强">宝盈中证10</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.5690</td>
+        <td class="ping">1.5690</td>
+        <td class="zhang">1.10%</td>
+        <td class="die">-2.12%</td>
+        <td class="zhang">8.58%</td>
+        <td class="zhang">11.36%</td>
+        <td class="zhang">22.01%</td>
+        <td class="zhang">40.84%</td>
+        <td class="zhang">71.85%</td>
+        <td class="zhang">47.60%</td>
+        <td class="zhang">8.58%</td>
+        <td class="zhang">56.90%</td>
+        <td class="zhang">41.99%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_213010.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=213010" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001040" type="checkbox">
+        </td>
+        <td>44</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001040.html">001040</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001040.html" title="新华策略精选股票">新华策略精选</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1770</td>
+        <td class="ping">1.1770</td>
+        <td class="zhang">1.12%</td>
+        <td class="die">-1.75%</td>
+        <td class="zhang">7.78%</td>
+        <td class="zhang">11.25%</td>
+        <td class="zhang">21.22%</td>
+        <td class="zhang">20.84%</td>
+        <td class="zhang">49.94%</td>
+        <td class="ping">---</td>
+        <td class="zhang">7.78%</td>
+        <td class="zhang">17.70%</td>
+        <td class="zhang">21.34%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001040.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001040" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001237" type="checkbox">
+        </td>
+        <td>45</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001237.html">001237</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001237.html" title="博时上证50ETF联接">博时上证50</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.0762</td>
+        <td class="ping">1.0762</td>
+        <td class="zhang">1.16%</td>
+        <td class="die">-1.84%</td>
+        <td class="zhang">8.48%</td>
+        <td class="zhang">11.25%</td>
+        <td class="zhang">19.00%</td>
+        <td class="zhang">34.51%</td>
+        <td class="zhang">62.13%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.48%</td>
+        <td class="zhang">7.62%</td>
+        <td class="zhang">35.82%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001237.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001237" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk519193" type="checkbox">
+        </td>
+        <td>46</td>
+        <td>
+          <a href="http://fund.eastmoney.com/519193.html">519193</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/519193.html" title="万家消费成长">万家消费成长</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3046</td>
+        <td class="ping">1.3046</td>
+        <td class="zhang">0.46%</td>
+        <td class="die">-2.01%</td>
+        <td class="zhang">10.71%</td>
+        <td class="zhang">11.24%</td>
+        <td class="zhang">14.59%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">10.71%</td>
+        <td class="zhang">30.46%</td>
+        <td class="zhang">30.46%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_519193.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=519193" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk501025" type="checkbox">
+        </td>
+        <td>47</td>
+        <td>
+          <a href="http://fund.eastmoney.com/501025.html">501025</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/501025.html" title="鹏华香港银行指数(LOF)">鹏华香港银行</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.2270</td>
+        <td class="ping">1.2770</td>
+        <td class="zhang">0.90%</td>
+        <td class="die">-0.63%</td>
+        <td class="zhang">11.24%</td>
+        <td class="zhang">11.21%</td>
+        <td class="zhang">12.40%</td>
+        <td class="zhang">27.25%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">11.24%</td>
+        <td class="zhang">27.64%</td>
+        <td class="zhang">25.81%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_501025.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=501025" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk502020" type="checkbox">
+        </td>
+        <td>48</td>
+        <td>
+          <a href="http://fund.eastmoney.com/502020.html">502020</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/502020.html" title="国金上证50分级">国金上证50</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.0820</td>
+        <td class="ping">---</td>
+        <td class="zhang">1.12%</td>
+        <td class="die">-1.90%</td>
+        <td class="zhang">8.74%</td>
+        <td class="zhang">11.20%</td>
+        <td class="zhang">20.05%</td>
+        <td class="zhang">37.29%</td>
+        <td class="zhang">66.14%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.74%</td>
+        <td class="die">-2.52%</td>
+        <td class="zhang">38.79%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_502020.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=502020" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001051" type="checkbox">
+        </td>
+        <td>49</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001051.html">001051</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001051.html" title="华夏上证50ETF联接">华夏上证50</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.0430</td>
+        <td class="ping">1.0430</td>
+        <td class="zhang">1.16%</td>
+        <td class="die">-1.79%</td>
+        <td class="zhang">8.65%</td>
+        <td class="zhang">11.19%</td>
+        <td class="zhang">17.85%</td>
+        <td class="zhang">32.87%</td>
+        <td class="zhang">60.71%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.65%</td>
+        <td class="zhang">4.30%</td>
+        <td class="zhang">34.23%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001051.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001051" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk160222" type="checkbox">
+        </td>
+        <td>50</td>
+        <td>
+          <a href="http://fund.eastmoney.com/160222.html">160222</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/160222.html" title="国泰国证食品饮料行业指数分级">国泰国证食品</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3790</td>
+        <td class="ping">2.0277</td>
+        <td class="zhang">1.98%</td>
+        <td class="die">-2.49%</td>
+        <td class="zhang">5.01%</td>
+        <td class="zhang">11.18%</td>
+        <td class="zhang">33.90%</td>
+        <td class="zhang">63.71%</td>
+        <td class="zhang">118.21%</td>
+        <td class="zhang">110.68%</td>
+        <td class="zhang">5.01%</td>
+        <td class="zhang">134.91%</td>
+        <td class="zhang">64.49%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_160222.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=160222" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk410008" type="checkbox">
+        </td>
+        <td>51</td>
+        <td>
+          <a href="http://fund.eastmoney.com/410008.html">410008</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/410008.html" title="华富中证100">华富中证10</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4618</td>
+        <td class="ping">1.4618</td>
+        <td class="zhang">1.14%</td>
+        <td class="die">-2.09%</td>
+        <td class="zhang">8.71%</td>
+        <td class="zhang">11.15%</td>
+        <td class="zhang">22.49%</td>
+        <td class="zhang">41.15%</td>
+        <td class="zhang">67.97%</td>
+        <td class="zhang">44.62%</td>
+        <td class="zhang">8.71%</td>
+        <td class="zhang">46.18%</td>
+        <td class="zhang">42.38%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_410008.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=410008" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk399001" type="checkbox">
+        </td>
+        <td>52</td>
+        <td>
+          <a href="http://fund.eastmoney.com/399001.html">399001</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/399001.html" title="中海上证50">中海上证50</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3390</td>
+        <td class="ping">1.3390</td>
+        <td class="zhang">1.13%</td>
+        <td class="die">-1.90%</td>
+        <td class="zhang">8.33%</td>
+        <td class="zhang">11.12%</td>
+        <td class="zhang">18.50%</td>
+        <td class="zhang">33.90%</td>
+        <td class="zhang">58.84%</td>
+        <td class="zhang">34.30%</td>
+        <td class="zhang">8.33%</td>
+        <td class="zhang">33.90%</td>
+        <td class="zhang">35.25%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_399001.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=399001" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk502048" type="checkbox">
+        </td>
+        <td>53</td>
+        <td>
+          <a href="http://fund.eastmoney.com/502048.html">502048</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/502048.html" title="易方达上证50指数分级">易方达上证5</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.0186</td>
+        <td class="ping">---</td>
+        <td class="zhang">1.16%</td>
+        <td class="die">-1.62%</td>
+        <td class="zhang">8.69%</td>
+        <td class="zhang">11.12%</td>
+        <td class="zhang">18.39%</td>
+        <td class="zhang">33.96%</td>
+        <td class="zhang">63.55%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.69%</td>
+        <td class="zhang">0.63%</td>
+        <td class="zhang">35.28%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_502048.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=502048" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001548" type="checkbox">
+        </td>
+        <td>54</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001548.html">001548</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001548.html" title="天弘上证50指数A">天弘上证50</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.2012</td>
+        <td class="ping">1.2012</td>
+        <td class="zhang">1.17%</td>
+        <td class="die">-1.82%</td>
+        <td class="zhang">8.43%</td>
+        <td class="zhang">11.07%</td>
+        <td class="zhang">18.25%</td>
+        <td class="zhang">34.36%</td>
+        <td class="zhang">61.15%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.43%</td>
+        <td class="zhang">20.12%</td>
+        <td class="zhang">35.70%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001548.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001548" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001549" type="checkbox">
+        </td>
+        <td>55</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001549.html">001549</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001549.html" title="天弘上证50指数C">天弘上证50</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1926</td>
+        <td class="ping">1.1926</td>
+        <td class="zhang">1.17%</td>
+        <td class="die">-1.83%</td>
+        <td class="zhang">8.42%</td>
+        <td class="zhang">11.00%</td>
+        <td class="zhang">18.10%</td>
+        <td class="zhang">34.06%</td>
+        <td class="zhang">60.27%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.42%</td>
+        <td class="zhang">19.26%</td>
+        <td class="zhang">35.40%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_001549.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001549" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk002387" type="checkbox">
+        </td>
+        <td>56</td>
+        <td>
+          <a href="http://fund.eastmoney.com/002387.html">002387</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/002387.html" title="工银沪港深股票">工银沪港深股</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3280</td>
+        <td class="ping">1.3280</td>
+        <td class="zhang">1.14%</td>
+        <td class="die">-1.34%</td>
+        <td class="zhang">5.56%</td>
+        <td class="zhang">10.94%</td>
+        <td class="zhang">17.73%</td>
+        <td class="zhang">38.33%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">5.56%</td>
+        <td class="zhang">32.80%</td>
+        <td class="zhang">37.19%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_002387.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=002387" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001208" type="checkbox">
+        </td>
+        <td>57</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001208.html">001208</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001208.html" title="诺安低碳经济股票">诺安低碳经济</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1870</td>
+        <td class="ping">1.1870</td>
+        <td class="zhang">1.19%</td>
+        <td class="die">-2.14%</td>
+        <td class="zhang">6.46%</td>
+        <td class="zhang">10.93%</td>
+        <td class="zhang">31.60%</td>
+        <td class="zhang">46.72%</td>
+        <td class="zhang">83.18%</td>
+        <td class="ping">---</td>
+        <td class="zhang">6.46%</td>
+        <td class="zhang">18.70%</td>
+        <td class="zhang">47.82%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001208.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001208" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001626" type="checkbox">
+        </td>
+        <td>58</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001626.html">001626</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001626.html" title="国泰央企改革股票">国泰央企改革</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4320</td>
+        <td class="ping">1.4320</td>
+        <td class="zhang">0.85%</td>
+        <td class="die">-1.92%</td>
+        <td class="zhang">7.99%</td>
+        <td class="zhang">10.66%</td>
+        <td class="zhang">17.76%</td>
+        <td class="zhang">37.56%</td>
+        <td class="zhang">81.96%</td>
+        <td class="ping">---</td>
+        <td class="zhang">7.99%</td>
+        <td class="zhang">43.20%</td>
+        <td class="zhang">38.63%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001626.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001626" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk160814" type="checkbox">
+        </td>
+        <td>59</td>
+        <td>
+          <a href="http://fund.eastmoney.com/160814.html">160814</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/160814.html" title="长盛中证金融地产指数分级">长盛中证金融</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">0.9100</td>
+        <td class="ping">---</td>
+        <td class="zhang">1.00%</td>
+        <td class="die">-2.67%</td>
+        <td class="zhang">9.90%</td>
+        <td class="zhang">10.62%</td>
+        <td class="zhang">15.24%</td>
+        <td class="zhang">26.44%</td>
+        <td class="zhang">46.93%</td>
+        <td class="ping">---</td>
+        <td class="zhang">9.90%</td>
+        <td class="die">-1.27%</td>
+        <td class="zhang">27.65%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_160814.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=160814" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk003261" type="checkbox">
+        </td>
+        <td>60</td>
+        <td>
+          <a href="http://fund.eastmoney.com/003261.html">003261</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/003261.html" title="安信沪深300增强发起式A">安信沪深30</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3522</td>
+        <td class="ping">1.3522</td>
+        <td class="zhang">0.64%</td>
+        <td class="die">-1.60%</td>
+        <td class="zhang">7.76%</td>
+        <td class="zhang">10.50%</td>
+        <td class="zhang">20.75%</td>
+        <td class="zhang">31.67%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">7.76%</td>
+        <td class="zhang">35.22%</td>
+        <td class="zhang">32.52%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_003261.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=003261" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001539" type="checkbox">
+        </td>
+        <td>61</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001539.html">001539</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001539.html" title="嘉实中证金融地产ETF联接">嘉实中证金融</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3901</td>
+        <td class="ping">1.3901</td>
+        <td class="zhang">0.97%</td>
+        <td class="die">-2.64%</td>
+        <td class="zhang">9.60%</td>
+        <td class="zhang">10.39%</td>
+        <td class="zhang">14.52%</td>
+        <td class="zhang">25.43%</td>
+        <td class="zhang">42.52%</td>
+        <td class="ping">---</td>
+        <td class="zhang">9.60%</td>
+        <td class="zhang">39.01%</td>
+        <td class="zhang">26.74%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001539.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001539" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk003262" type="checkbox">
+        </td>
+        <td>62</td>
+        <td>
+          <a href="http://fund.eastmoney.com/003262.html">003262</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/003262.html" title="安信沪深300增强发起式C">安信沪深30</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3469</td>
+        <td class="ping">1.3469</td>
+        <td class="zhang">0.64%</td>
+        <td class="die">-1.61%</td>
+        <td class="zhang">7.72%</td>
+        <td class="zhang">10.37%</td>
+        <td class="zhang">20.45%</td>
+        <td class="zhang">31.23%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">7.72%</td>
+        <td class="zhang">34.69%</td>
+        <td class="zhang">32.07%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_003262.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=003262" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk320010" type="checkbox">
+        </td>
+        <td>63</td>
+        <td>
+          <a href="http://fund.eastmoney.com/320010.html">320010</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/320010.html" title="诺安中证100">诺安中证10</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4580</td>
+        <td class="ping">1.4580</td>
+        <td class="zhang">1.11%</td>
+        <td class="die">-2.21%</td>
+        <td class="zhang">8.16%</td>
+        <td class="zhang">10.29%</td>
+        <td class="zhang">20.80%</td>
+        <td class="zhang">42.80%</td>
+        <td class="zhang">70.73%</td>
+        <td class="zhang">46.68%</td>
+        <td class="zhang">8.16%</td>
+        <td class="zhang">45.80%</td>
+        <td class="zhang">44.07%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_320010.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=320010" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001586" type="checkbox">
+        </td>
+        <td>64</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001586.html">001586</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001586.html" title="天弘中证100指数A">天弘中证10</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1976</td>
+        <td class="ping">1.1976</td>
+        <td class="zhang">1.14%</td>
+        <td class="die">-2.08%</td>
+        <td class="zhang">8.27%</td>
+        <td class="zhang">10.29%</td>
+        <td class="zhang">19.43%</td>
+        <td class="zhang">35.89%</td>
+        <td class="zhang">61.18%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.27%</td>
+        <td class="zhang">19.76%</td>
+        <td class="zhang">37.10%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001586.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001586" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001587" type="checkbox">
+        </td>
+        <td>65</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001587.html">001587</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001587.html" title="天弘中证100指数C">天弘中证10</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1894</td>
+        <td class="ping">1.1894</td>
+        <td class="zhang">1.14%</td>
+        <td class="die">-2.08%</td>
+        <td class="zhang">8.25%</td>
+        <td class="zhang">10.22%</td>
+        <td class="zhang">19.27%</td>
+        <td class="zhang">35.54%</td>
+        <td class="zhang">60.32%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.25%</td>
+        <td class="zhang">18.94%</td>
+        <td class="zhang">36.76%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_001587.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001587" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001583" type="checkbox">
+        </td>
+        <td>66</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001583.html">001583</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001583.html" title="安信新常态股票">安信新常态股</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4360</td>
+        <td class="ping">1.4360</td>
+        <td class="die">-0.35%</td>
+        <td class="die">-2.84%</td>
+        <td class="zhang">6.45%</td>
+        <td class="zhang">10.21%</td>
+        <td class="zhang">18.19%</td>
+        <td class="zhang">51.16%</td>
+        <td class="zhang">64.87%</td>
+        <td class="ping">---</td>
+        <td class="zhang">6.45%</td>
+        <td class="zhang">43.60%</td>
+        <td class="zhang">51.96%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001583.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001583" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk240014" type="checkbox">
+        </td>
+        <td>67</td>
+        <td>
+          <a href="http://fund.eastmoney.com/240014.html">240014</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/240014.html" title="华宝中证100指数">华宝中证10</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4740</td>
+        <td class="ping">1.4740</td>
+        <td class="zhang">1.25%</td>
+        <td class="die">-2.06%</td>
+        <td class="zhang">8.44%</td>
+        <td class="zhang">10.19%</td>
+        <td class="zhang">19.97%</td>
+        <td class="zhang">39.69%</td>
+        <td class="zhang">69.99%</td>
+        <td class="zhang">43.90%</td>
+        <td class="zhang">8.44%</td>
+        <td class="zhang">47.40%</td>
+        <td class="zhang">40.88%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_240014.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=240014" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk163808" type="checkbox">
+        </td>
+        <td>68</td>
+        <td>
+          <a href="http://fund.eastmoney.com/163808.html">163808</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/163808.html" title="中银中证100">中银中证10</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4840</td>
+        <td class="ping">1.4940</td>
+        <td class="zhang">1.16%</td>
+        <td class="die">-2.05%</td>
+        <td class="zhang">8.24%</td>
+        <td class="zhang">10.09%</td>
+        <td class="zhang">20.36%</td>
+        <td class="zhang">40.26%</td>
+        <td class="zhang">73.97%</td>
+        <td class="zhang">51.74%</td>
+        <td class="zhang">8.24%</td>
+        <td class="zhang">49.88%</td>
+        <td class="zhang">41.33%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_163808.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=163808" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk162307" type="checkbox">
+        </td>
+        <td>69</td>
+        <td>
+          <a href="http://fund.eastmoney.com/162307.html">162307</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/162307.html" title="海富通中证100">海富通中证1</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4100</td>
+        <td class="ping">1.4100</td>
+        <td class="zhang">1.22%</td>
+        <td class="die">-2.08%</td>
+        <td class="zhang">8.29%</td>
+        <td class="zhang">10.07%</td>
+        <td class="zhang">19.29%</td>
+        <td class="zhang">35.45%</td>
+        <td class="zhang">60.59%</td>
+        <td class="zhang">37.29%</td>
+        <td class="zhang">8.29%</td>
+        <td class="zhang">41.00%</td>
+        <td class="zhang">36.63%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_162307.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=162307" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even" style="background-color: rgb(255, 255, 255);">
+        <td>
+          <input id="chk160127" type="checkbox">
+        </td>
+        <td>70</td>
+        <td>
+          <a href="http://fund.eastmoney.com/160127.html">160127</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/160127.html" title="南方新兴消费分级">南方新兴消费</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3380</td>
+        <td class="ping">2.7130</td>
+        <td class="zhang">1.21%</td>
+        <td class="die">-1.47%</td>
+        <td class="zhang">6.87%</td>
+        <td class="zhang">10.03%</td>
+        <td class="zhang">18.41%</td>
+        <td class="zhang">43.09%</td>
+        <td class="zhang">103.44%</td>
+        <td class="zhang">108.98%</td>
+        <td class="zhang">6.87%</td>
+        <td class="zhang">171.27%</td>
+        <td class="zhang">43.93%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_160127.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=160127" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="" style="background-color: rgb(255, 255, 255);">
+        <td>
+          <input id="chk540009" type="checkbox">
+        </td>
+        <td>71</td>
+        <td>
+          <a href="http://fund.eastmoney.com/540009.html">540009</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/540009.html" title="汇丰晋信消费红利">汇丰晋信消费</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.2046</td>
+        <td class="ping">1.4316</td>
+        <td class="zhang">0.14%</td>
+        <td class="die">-1.58%</td>
+        <td class="zhang">5.82%</td>
+        <td class="zhang">9.96%</td>
+        <td class="zhang">22.24%</td>
+        <td class="zhang">49.26%</td>
+        <td class="zhang">90.29%</td>
+        <td class="zhang">61.45%</td>
+        <td class="zhang">5.82%</td>
+        <td class="zhang">47.08%</td>
+        <td class="zhang">49.68%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_540009.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=540009" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even" style="background-color: rgb(255, 255, 255);">
+        <td>
+          <input id="chk001236" type="checkbox">
+        </td>
+        <td>72</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001236.html">001236</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001236.html" title="博时丝路主题股票A">博时丝路主题</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.0100</td>
+        <td class="ping">1.0100</td>
+        <td class="zhang">0.60%</td>
+        <td class="die">-1.85%</td>
+        <td class="zhang">8.37%</td>
+        <td class="zhang">9.90%</td>
+        <td class="zhang">23.32%</td>
+        <td class="zhang">23.62%</td>
+        <td class="zhang">50.07%</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.37%</td>
+        <td class="zhang">1.00%</td>
+        <td class="zhang">24.23%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001236.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001236" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk519100" type="checkbox">
+        </td>
+        <td>73</td>
+        <td>
+          <a href="http://fund.eastmoney.com/519100.html">519100</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/519100.html" title="长盛中证100">长盛中证10</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3545</td>
+        <td class="ping">2.0455</td>
+        <td class="zhang">1.16%</td>
+        <td class="die">-2.18%</td>
+        <td class="zhang">8.14%</td>
+        <td class="zhang">9.85%</td>
+        <td class="zhang">19.01%</td>
+        <td class="zhang">36.72%</td>
+        <td class="zhang">65.79%</td>
+        <td class="zhang">42.15%</td>
+        <td class="zhang">8.14%</td>
+        <td class="zhang">131.70%</td>
+        <td class="zhang">37.93%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_519100.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=519100" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk162509" type="checkbox">
+        </td>
+        <td>74</td>
+        <td>
+          <a href="http://fund.eastmoney.com/162509.html">162509</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/162509.html" title="国联安双禧中证100">国联安双禧中</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4560</td>
+        <td class="ping">1.4010</td>
+        <td class="zhang">1.11%</td>
+        <td class="die">-2.15%</td>
+        <td class="zhang">8.17%</td>
+        <td class="zhang">9.72%</td>
+        <td class="zhang">18.66%</td>
+        <td class="zhang">34.69%</td>
+        <td class="zhang">60.27%</td>
+        <td class="zhang">34.17%</td>
+        <td class="zhang">8.17%</td>
+        <td class="zhang">63.31%</td>
+        <td class="zhang">35.82%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_162509.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=162509" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001677" type="checkbox">
+        </td>
+        <td>75</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001677.html">001677</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001677.html" title="中银战略新兴产业股票">中银战略新兴</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.4270</td>
+        <td class="ping">1.4270</td>
+        <td class="zhang">2.15%</td>
+        <td class="die">-2.73%</td>
+        <td class="zhang">7.21%</td>
+        <td class="zhang">9.68%</td>
+        <td class="zhang">20.73%</td>
+        <td class="zhang">32.25%</td>
+        <td class="zhang">48.34%</td>
+        <td class="ping">---</td>
+        <td class="zhang">7.21%</td>
+        <td class="zhang">42.70%</td>
+        <td class="zhang">33.74%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001677.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001677" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk000854" type="checkbox">
+        </td>
+        <td>76</td>
+        <td>
+          <a href="http://fund.eastmoney.com/000854.html">000854</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/000854.html" title="鹏华养老产业">鹏华养老产业</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.8270</td>
+        <td class="ping">1.8270</td>
+        <td class="zhang">2.07%</td>
+        <td class="die">-3.03%</td>
+        <td class="zhang">5.61%</td>
+        <td class="zhang">9.66%</td>
+        <td class="zhang">24.12%</td>
+        <td class="zhang">50.49%</td>
+        <td class="zhang">72.68%</td>
+        <td class="zhang">62.98%</td>
+        <td class="zhang">5.61%</td>
+        <td class="zhang">82.70%</td>
+        <td class="zhang">52.25%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_000854.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=000854" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk004403" type="checkbox">
+        </td>
+        <td>77</td>
+        <td>
+          <a href="http://fund.eastmoney.com/004403.html">004403</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/004403.html" title="平安大华股息精选沪港深A">平安大华股息</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1644</td>
+        <td class="ping">1.1644</td>
+        <td class="zhang">0.46%</td>
+        <td class="die">-1.50%</td>
+        <td class="zhang">6.10%</td>
+        <td class="zhang">9.65%</td>
+        <td class="zhang">12.81%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">6.10%</td>
+        <td class="zhang">16.44%</td>
+        <td class="zhang">16.44%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_004403.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=004403" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk519931" type="checkbox">
+        </td>
+        <td>78</td>
+        <td>
+          <a href="http://fund.eastmoney.com/519931.html">519931</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/519931.html" title="长信港股通指数">长信港股通指</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3240</td>
+        <td class="ping">1.3240</td>
+        <td class="zhang">0.68%</td>
+        <td class="die">-1.19%</td>
+        <td class="zhang">5.41%</td>
+        <td class="zhang">9.60%</td>
+        <td class="zhang">12.30%</td>
+        <td class="zhang">27.68%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">5.41%</td>
+        <td class="zhang">32.40%</td>
+        <td class="zhang">29.04%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_519931.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=519931" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk002697" type="checkbox">
+        </td>
+        <td>79</td>
+        <td>
+          <a href="http://fund.eastmoney.com/002697.html">002697</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/002697.html" title="中欧消费主题股票C">中欧消费主题</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3430</td>
+        <td class="ping">1.3430</td>
+        <td class="zhang">1.36%</td>
+        <td class="die">-2.19%</td>
+        <td class="zhang">3.79%</td>
+        <td class="zhang">9.54%</td>
+        <td class="zhang">23.32%</td>
+        <td class="zhang">38.03%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">3.79%</td>
+        <td class="zhang">34.30%</td>
+        <td class="zhang">38.74%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_002697.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=002697" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001469" type="checkbox">
+        </td>
+        <td>80</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001469.html">001469</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001469.html" title="广发中证全指金融地产联接A">广发中证全指</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1471</td>
+        <td class="ping">1.1471</td>
+        <td class="zhang">0.82%</td>
+        <td class="die">-2.65%</td>
+        <td class="zhang">9.32%</td>
+        <td class="zhang">9.45%</td>
+        <td class="zhang">13.36%</td>
+        <td class="zhang">27.34%</td>
+        <td class="zhang">46.80%</td>
+        <td class="ping">---</td>
+        <td class="zhang">9.32%</td>
+        <td class="zhang">14.71%</td>
+        <td class="zhang">28.56%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001469.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001469" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk020021" type="checkbox">
+        </td>
+        <td>81</td>
+        <td>
+          <a href="http://fund.eastmoney.com/020021.html">020021</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/020021.html" title="国泰上证180金融联接">国泰上证18</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.8798</td>
+        <td class="ping">1.8798</td>
+        <td class="zhang">0.95%</td>
+        <td class="die">-2.27%</td>
+        <td class="zhang">9.12%</td>
+        <td class="zhang">9.41%</td>
+        <td class="zhang">13.69%</td>
+        <td class="zhang">27.55%</td>
+        <td class="zhang">52.42%</td>
+        <td class="zhang">28.29%</td>
+        <td class="zhang">9.12%</td>
+        <td class="zhang">87.98%</td>
+        <td class="zhang">29.10%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_020021.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=020021" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk166402" type="checkbox">
+        </td>
+        <td>82</td>
+        <td>
+          <a href="http://fund.eastmoney.com/166402.html">166402</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/166402.html" title="浦银沪港深基本面100指数">浦银沪港深基</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1781</td>
+        <td class="ping">1.1781</td>
+        <td class="zhang">0.66%</td>
+        <td class="die">-1.27%</td>
+        <td class="zhang">8.48%</td>
+        <td class="zhang">9.38%</td>
+        <td class="zhang">11.39%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.48%</td>
+        <td class="zhang">17.81%</td>
+        <td class="zhang">17.81%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_166402.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=166402" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk002979" type="checkbox">
+        </td>
+        <td>83</td>
+        <td>
+          <a href="http://fund.eastmoney.com/002979.html">002979</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/002979.html" title="广发中证全指金融地产联接C">广发中证全指</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1442</td>
+        <td class="ping">1.1442</td>
+        <td class="zhang">0.81%</td>
+        <td class="die">-2.66%</td>
+        <td class="zhang">9.27%</td>
+        <td class="zhang">9.34%</td>
+        <td class="zhang">13.13%</td>
+        <td class="zhang">26.91%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">9.27%</td>
+        <td class="zhang">36.28%</td>
+        <td class="zhang">28.13%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_002979.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=002979" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk004404" type="checkbox">
+        </td>
+        <td>84</td>
+        <td>
+          <a href="http://fund.eastmoney.com/004404.html">004404</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/004404.html" title="平安大华股息精选沪港深C">平安大华股息</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1518</td>
+        <td class="ping">1.1518</td>
+        <td class="zhang">0.45%</td>
+        <td class="die">-1.54%</td>
+        <td class="zhang">5.96%</td>
+        <td class="zhang">9.33%</td>
+        <td class="zhang">11.92%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">5.96%</td>
+        <td class="zhang">15.18%</td>
+        <td class="zhang">15.18%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_004404.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=004404" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk162213" type="checkbox">
+        </td>
+        <td>85</td>
+        <td>
+          <a href="http://fund.eastmoney.com/162213.html">162213</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/162213.html" title="泰达宏利财富大盘指数A">泰达宏利财富</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.6060</td>
+        <td class="ping">2.0460</td>
+        <td class="zhang">0.57%</td>
+        <td class="die">-1.59%</td>
+        <td class="zhang">8.20%</td>
+        <td class="zhang">9.33%</td>
+        <td class="zhang">15.18%</td>
+        <td class="zhang">33.28%</td>
+        <td class="zhang">63.14%</td>
+        <td class="zhang">69.57%</td>
+        <td class="zhang">8.20%</td>
+        <td class="zhang">129.05%</td>
+        <td class="zhang">34.34%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_162213.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=162213" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk003548" type="checkbox">
+        </td>
+        <td>86</td>
+        <td>
+          <a href="http://fund.eastmoney.com/003548.html">003548</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/003548.html" title="泰达宏利财富大盘指数C">泰达宏利财富</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.6139</td>
+        <td class="ping">1.6139</td>
+        <td class="zhang">0.57%</td>
+        <td class="die">-1.59%</td>
+        <td class="zhang">8.21%</td>
+        <td class="zhang">9.25%</td>
+        <td class="zhang">15.42%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">8.21%</td>
+        <td class="zhang">33.72%</td>
+        <td class="zhang">33.72%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_003548.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=003548" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk050002" type="checkbox">
+        </td>
+        <td>87</td>
+        <td>
+          <a href="http://fund.eastmoney.com/050002.html">050002</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/050002.html" title="博时沪深300指数A">博时沪深30</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.5812</td>
+        <td class="ping">3.5781</td>
+        <td class="zhang">0.61%</td>
+        <td class="die">-1.76%</td>
+        <td class="zhang">6.92%</td>
+        <td class="zhang">9.10%</td>
+        <td class="zhang">16.74%</td>
+        <td class="zhang">31.04%</td>
+        <td class="zhang">63.20%</td>
+        <td class="zhang">58.51%</td>
+        <td class="zhang">6.92%</td>
+        <td class="zhang">410.12%</td>
+        <td class="zhang">31.96%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_050002.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=050002" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk161607" type="checkbox">
+        </td>
+        <td>88</td>
+        <td>
+          <a href="http://fund.eastmoney.com/161607.html">161607</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/161607.html" title="融通巨潮100指数A(LOF)">融通巨潮10</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.2880</td>
+        <td class="ping">2.8810</td>
+        <td class="zhang">0.78%</td>
+        <td class="die">-2.35%</td>
+        <td class="zhang">7.98%</td>
+        <td class="zhang">9.10%</td>
+        <td class="zhang">16.33%</td>
+        <td class="zhang">29.55%</td>
+        <td class="zhang">55.99%</td>
+        <td class="zhang">28.70%</td>
+        <td class="zhang">7.98%</td>
+        <td class="zhang">352.07%</td>
+        <td class="zhang">30.79%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_161607.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=161607" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk003876" type="checkbox">
+        </td>
+        <td>89</td>
+        <td>
+          <a href="http://fund.eastmoney.com/003876.html">003876</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/003876.html" title="华宝沪深300增强">华宝沪深30</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3674</td>
+        <td class="ping">1.3674</td>
+        <td class="zhang">0.58%</td>
+        <td class="die">-2.57%</td>
+        <td class="zhang">6.46%</td>
+        <td class="zhang">9.03%</td>
+        <td class="zhang">15.64%</td>
+        <td class="zhang">34.18%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">6.46%</td>
+        <td class="zhang">36.74%</td>
+        <td class="zhang">35.24%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_003876.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=003876" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk002621" type="checkbox">
+        </td>
+        <td>90</td>
+        <td>
+          <a href="http://fund.eastmoney.com/002621.html">002621</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/002621.html" title="中欧消费主题股票A">中欧消费主题</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.3320</td>
+        <td class="ping">1.3320</td>
+        <td class="zhang">1.37%</td>
+        <td class="die">-2.20%</td>
+        <td class="zhang">3.50%</td>
+        <td class="zhang">9.00%</td>
+        <td class="zhang">22.88%</td>
+        <td class="zhang">37.89%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">3.50%</td>
+        <td class="zhang">33.20%</td>
+        <td class="zhang">38.46%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_002621.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=002621" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk001528" type="checkbox">
+        </td>
+        <td>91</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001528.html">001528</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001528.html" title="诺安先进制造股票">诺安先进制造</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.5770</td>
+        <td class="ping">1.5770</td>
+        <td class="zhang">0.38%</td>
+        <td class="die">-1.50%</td>
+        <td class="zhang">5.84%</td>
+        <td class="zhang">8.98%</td>
+        <td class="zhang">26.36%</td>
+        <td class="zhang">34.79%</td>
+        <td class="zhang">76.40%</td>
+        <td class="ping">---</td>
+        <td class="zhang">5.84%</td>
+        <td class="zhang">57.70%</td>
+        <td class="zhang">35.13%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001528.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001528" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk070023" type="checkbox">
+        </td>
+        <td>92</td>
+        <td>
+          <a href="http://fund.eastmoney.com/070023.html">070023</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/070023.html" title="嘉实深证120联接">嘉实深证12</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.9529</td>
+        <td class="ping">1.9529</td>
+        <td class="zhang">0.43%</td>
+        <td class="die">-2.85%</td>
+        <td class="zhang">7.50%</td>
+        <td class="zhang">8.96%</td>
+        <td class="zhang">18.07%</td>
+        <td class="zhang">38.99%</td>
+        <td class="zhang">62.31%</td>
+        <td class="zhang">65.36%</td>
+        <td class="zhang">7.50%</td>
+        <td class="zhang">95.29%</td>
+        <td class="zhang">40.07%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_070023.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=070023" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk100038" type="checkbox">
+        </td>
+        <td>93</td>
+        <td>
+          <a href="http://fund.eastmoney.com/100038.html">100038</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/100038.html" title="富国量化沪深300">富国量化沪深</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.9750</td>
+        <td class="ping">1.9750</td>
+        <td class="zhang">0.25%</td>
+        <td class="die">-1.69%</td>
+        <td class="zhang">7.92%</td>
+        <td class="zhang">8.82%</td>
+        <td class="zhang">16.31%</td>
+        <td class="zhang">33.63%</td>
+        <td class="zhang">61.22%</td>
+        <td class="zhang">60.44%</td>
+        <td class="zhang">7.92%</td>
+        <td class="zhang">97.50%</td>
+        <td class="zhang">34.63%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_100038.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=100038" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk004716" type="checkbox">
+        </td>
+        <td>94</td>
+        <td>
+          <a href="http://fund.eastmoney.com/004716.html">004716</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/004716.html" title="信诚量化阿尔法股票">信诚量化阿尔</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1449</td>
+        <td class="ping">1.1449</td>
+        <td class="zhang">0.81%</td>
+        <td class="die">-1.99%</td>
+        <td class="zhang">7.21%</td>
+        <td class="zhang">8.75%</td>
+        <td class="zhang">14.42%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">7.21%</td>
+        <td class="zhang">14.49%</td>
+        <td class="zhang">14.49%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_004716.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=004716" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk161725" type="checkbox">
+        </td>
+        <td>95</td>
+        <td>
+          <a href="http://fund.eastmoney.com/161725.html">161725</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/161725.html" title="招商中证白酒指数分级">招商中证白酒</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1950</td>
+        <td class="ping">1.7310</td>
+        <td class="zhang">1.62%</td>
+        <td class="die">-3.71%</td>
+        <td class="zhang">4.73%</td>
+        <td class="zhang">8.72%</td>
+        <td class="zhang">28.38%</td>
+        <td class="zhang">80.25%</td>
+        <td class="zhang">159.52%</td>
+        <td class="ping">---</td>
+        <td class="zhang">4.73%</td>
+        <td class="zhang">86.78%</td>
+        <td class="zhang">81.35%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_161725.html">0.10%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=161725" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk001579" type="checkbox">
+        </td>
+        <td>96</td>
+        <td>
+          <a href="http://fund.eastmoney.com/001579.html">001579</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/001579.html" title="国泰大农业股票">国泰大农业股</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1500</td>
+        <td class="ping">1.1500</td>
+        <td class="die">-1.03%</td>
+        <td class="die">-2.38%</td>
+        <td class="zhang">4.83%</td>
+        <td class="zhang">8.70%</td>
+        <td class="zhang">13.86%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">4.83%</td>
+        <td class="zhang">15.00%</td>
+        <td class="zhang">15.00%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_001579.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=001579" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk519706" type="checkbox">
+        </td>
+        <td>97</td>
+        <td>
+          <a href="http://fund.eastmoney.com/519706.html">519706</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/519706.html" title="交银深证300联接">交银深证30</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.9000</td>
+        <td class="ping">1.9000</td>
+        <td class="zhang">0.42%</td>
+        <td class="die">-3.06%</td>
+        <td class="zhang">7.04%</td>
+        <td class="zhang">8.63%</td>
+        <td class="zhang">19.95%</td>
+        <td class="zhang">37.09%</td>
+        <td class="zhang">57.55%</td>
+        <td class="zhang">46.38%</td>
+        <td class="zhang">7.04%</td>
+        <td class="zhang">90.00%</td>
+        <td class="zhang">38.08%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_519706.html">0.15%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=519706" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk005063" type="checkbox">
+        </td>
+        <td>98</td>
+        <td>
+          <a href="http://fund.eastmoney.com/005063.html">005063</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/005063.html" title="广发中证全指家用电器指数A">广发中证全指</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1564</td>
+        <td class="ping">1.1564</td>
+        <td class="zhang">0.93%</td>
+        <td class="die">-2.13%</td>
+        <td class="zhang">7.28%</td>
+        <td class="zhang">8.63%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">7.28%</td>
+        <td class="zhang">15.64%</td>
+        <td class="zhang">15.64%</td>
+        <td>
+          <a style="color:#4c74b1;font-size:12px;font-family:Arial; text-decoration: underline;float:none;margin:0;padding-left:5px;"
+            href="http://fund.eastmoney.com/f10/jjfl_005063.html">0.12%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=005063" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input id="chk002315" type="checkbox">
+        </td>
+        <td>99</td>
+        <td>
+          <a href="http://fund.eastmoney.com/002315.html">002315</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/002315.html" title="创金合信沪深300指数增强C">创金合信沪深</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1261</td>
+        <td class="ping">1.2711</td>
+        <td class="zhang">0.40%</td>
+        <td class="die">-1.55%</td>
+        <td class="zhang">7.19%</td>
+        <td class="zhang">8.59%</td>
+        <td class="zhang">16.06%</td>
+        <td class="zhang">30.95%</td>
+        <td class="zhang">56.72%</td>
+        <td class="ping">---</td>
+        <td class="zhang">7.19%</td>
+        <td class="zhang">28.14%</td>
+        <td class="zhang">32.22%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_002315.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=002315" class="buybtn"></a>
+        </td>
+      </tr>
+      <tr class="even">
+        <td>
+          <input id="chk005064" type="checkbox">
+        </td>
+        <td>100</td>
+        <td>
+          <a href="http://fund.eastmoney.com/005064.html">005064</a>
+        </td>
+        <td>
+          <a href="http://fund.eastmoney.com/005064.html" title="广发中证全指家用电器指数C">广发中证全指</a>
+        </td>
+        <td>01-31</td>
+        <td class="ping">1.1553</td>
+        <td class="ping">1.1553</td>
+        <td class="zhang">0.93%</td>
+        <td class="die">-2.13%</td>
+        <td class="zhang">7.27%</td>
+        <td class="zhang">8.58%</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="ping">---</td>
+        <td class="zhang">7.27%</td>
+        <td class="zhang">15.53%</td>
+        <td class="zhang">15.53%</td>
+        <td>
+          <a href="http://fund.eastmoney.com/f10/jjfl_005064.html" style="color:#4c74b1;font-family:Arial;font-size:12px;text-decoration:underline;margin:0;padding-left:5px;float:none">0.00%</a>
+        </td>
+        <td>
+          <a href="https://trade.1234567.com.cn/FundtradePage/default2.aspx?fc=005064" class="buybtn"></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
