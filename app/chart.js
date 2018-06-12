@@ -22,7 +22,7 @@ function renderHuigou(market) {
                 let datestr = r[i].date;
                 let date = new Date(datestr.substr(0, 4) + '-' + datestr.substr(4, 2) + '-' + datestr.substr(6, 2));
                 let code = r[i].code;
-                let sum = r[i].sum;
+                let sum = r[i].sum > 0 ? 0 : r[i].sum;
                 let price = r[i].price;
                 if (chartData[datestr] === undefined) {
                     chartData[datestr] = 0;

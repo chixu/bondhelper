@@ -13,6 +13,7 @@ const HTTP = require('http');
 const XLSX = require('xlsx');
 const MYSQL = require('mysql');
 const stockUtils = require("./utils/stock");
+const DATE = require("./utils/date");
 
 const URL = "http://www.chinaclear.cn/zdjs/xbzzsl/center_bzzsl.shtml";
 const DL_URL = "http://www.chinaclear.cn/zdjs/editor_file/";
@@ -23,6 +24,8 @@ let DATA_CANGWEI = {};
 let DATA_ZHIYA = {};
 
 const BOND_TABLE = require('./bondTable');
+const NEWS_NOTIFICATION = require('./components/newsNotification');
+const STOCK_NOTIFICATION = require('./components/stockNotification');
 // const BOND_NEWS = require('./bondNewsTable');
 const CHART = require('./chart');
 //const BOND_SELECT = require('./bondSelect');
@@ -177,48 +180,60 @@ function init2() {
           name: res.name
         };
       }
-      con.query('select * from zhiya', function (err, result2) {
+      con.query('select * from watchlist', function (err, result3) {
         if (err) throw err;
-        for (let i = 0; i < result2.length; i++) {
-          //DATA_ZHIYA[result2[i]['code']] = parseInt(result2[i]['count']);
-          let res = result2[i];
+        for (let i = 0; i < result3.length; i++) {
+          let res = result3[i];
           DATA_ZHIYA[res.code] = {
-            count: parseInt(res['count']) * (stockUtils.getMarket(res.code) == 'sh' ? 10 : 1),
-            name: res.name
+            count: 0,
+            name: ""
           };
         }
-        for (let k in DATA_ZHIYA) {
-          if (DATA_CANGWEI[k] == undefined) {
-            DATA_CANGWEI[k] = DATA_ZHIYA[k];
-          } else {
-            DATA_CANGWEI[k].count = DATA_CANGWEI[k].count + DATA_ZHIYA[k].count;
+        con.query('select * from zhiya', function (err, result2) {
+          if (err) throw err;
+          for (let i = 0; i < result2.length; i++) {
+            //DATA_ZHIYA[result2[i]['code']] = parseInt(result2[i]['count']);
+            let res = result2[i];
+            DATA_ZHIYA[res.code] = {
+              count: parseInt(res['count']) * (stockUtils.getMarket(res.code) == 'sh' ? 10 : 1),
+              name: res.name
+            };
           }
-          // DATA_ZHIYA[k] = {
-          //   count: DATA_ZHIYA[k]
-          // };
-        }
-        let ids = '';
-        for (let k in DATA_CANGWEI) {
-          ids += "'" + k + "',"
-        }
-        con.query(`select shuiqian,code from bond where code in (${ids.substr(0, ids.length-1)})`, function (err, result3) {
+          for (let k in DATA_ZHIYA) {
+            if (DATA_CANGWEI[k] == undefined) {
+              DATA_CANGWEI[k] = DATA_ZHIYA[k];
+            } else {
+              DATA_CANGWEI[k].count = DATA_CANGWEI[k].count + DATA_ZHIYA[k].count;
+            }
+            // DATA_ZHIYA[k] = {
+            //   count: DATA_ZHIYA[k]
+            // };
+          }
+          let ids = '';
           for (let k in DATA_CANGWEI) {
-            DATA_CANGWEI[k].shuiqian = 0;
-            for (let k2 in result3) {
-              if (k == result3[k2].code) {
-                DATA_CANGWEI[k].shuiqian = result3[k2].shuiqian;
-                break;
+            ids += "'" + k + "',"
+          }
+          con.query(`select shuiqian,code from bond where code in (${ids.substr(0, ids.length-1)})`, function (err, result3) {
+            for (let k in DATA_CANGWEI) {
+              DATA_CANGWEI[k].shuiqian = 0;
+              for (let k2 in result3) {
+                if (k == result3[k2].code) {
+                  DATA_CANGWEI[k].shuiqian = result3[k2].shuiqian;
+                  break;
+                }
               }
             }
-          }
-          console.log('DATA_CANGWEI', JSON.stringify(DATA_CANGWEI, null, 2));
-          console.log('DATA_ZHIYA', JSON.stringify(DATA_ZHIYA, null, 2));
-          BOND_TABLE.init(con);
-          CHART.init(con);
-          //migrateBondData();
-          initCangwei();
-          renderTable2();
-          renderNews();
+            console.log('DATA_CANGWEI', JSON.stringify(DATA_CANGWEI, null, 2));
+            console.log('DATA_ZHIYA', JSON.stringify(DATA_ZHIYA, null, 2));
+            BOND_TABLE.init(con);
+            CHART.init(con);
+            NEWS_NOTIFICATION.init(con);
+            STOCK_NOTIFICATION.init();
+            //migrateBondData();
+            initCangwei();
+            renderTable2();
+            renderNews();
+          });
         });
       });
     });
@@ -342,7 +357,10 @@ function updateTableInfo() {
 //getNormalBond();
 
 function renderNews() {
-  con.query('select * from news', function (err, r) {
+  let date = new Date();
+  let dateStr = DATE.getDashYYYYMMDD(date.addDays(-15));
+  console.log('datestr ', dateStr)
+  con.query(`select * from news where date > '${dateStr}' order by date desc, updatetime desc`, function (err, r) {
     let list = document.createElement('ul');
     list.style.marginLeft = "-15px";
     let res = document.getElementById('bondNews');
@@ -577,7 +595,29 @@ function loadXls(href, isSZ) {
 }
 
 var notificationShown = false;
+var sound = new Howl({
+  src: ['alarm.mp3']
+});
+sound.play();
 
-function notificationClicked(){
+function showNotification(msg) {
+  notificationShown = true;
+  let p = document.createElement('p');
+  p.innerText = msg;
+  document.getElementById('notification').appendChild(p);
+  sound.play();
+}
 
+// setInterval(showNotification, 3000);
+
+function notificationClicked() {
+  // if (notificationShown) {
+
+  // } else {
+
+  // }
+  let not = document.getElementById('notification');
+  // not.style.display = ''
+  not.innerHTML = "";
+  notificationShown = false;
 }

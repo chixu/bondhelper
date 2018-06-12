@@ -11,18 +11,24 @@ function pad(n, width, z) {
 module.exports = {
   getDateString: getDateString,
   getNowYYYYMMDD: getNowYYYYMMDD,
+  getDashYYYYMMDD: getDashYYYYMMDD,
   pad: pad
 };
 
 function getNowYYYYMMDD() {
   let now = new Date();
-  return now.getFullYear() + pad(now.getMonth(), 2) + pad(now.getDate(), 2);
+  return now.getFullYear() + pad(now.getMonth()+1, 2) + pad(now.getDate(), 2);
 }
 
+function getDashYYYYMMDD(d) {
+  if (d == undefined)
+    d = new Date();
+  return d.getFullYear() + '-' + pad(d.getMonth()+1, 2) + '-' + pad(d.getDate(), 2);
+}
 
 function getNowYYYYMMDDHHmm() {
   let now = new Date();
-  return now.getFullYear() + pad(now.getMonth(), 2) + pad(now.getDate(), 2) + pad(now.getHours(), 2) + pad(now.getMinutes(), 2);
+  return now.getFullYear() + pad(now.getMonth()+1, 2) + pad(now.getDate(), 2) + pad(now.getHours(), 2) + pad(now.getMinutes(), 2);
 }
 
 Date.prototype.addDays = function (days) {

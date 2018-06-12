@@ -115,10 +115,9 @@ function init(_con) {
   con.query(`select * from stockinfo`, function (err, r2) {
     for (let i = 0; i < r2.length; i++) {
       let id = r2[i].code;
-      let info = '流资'+r2[i].currentasset + ' 流债'+r2[i].currentliabilities + ' 库存'+r2[i].inventories+ ' 净利'+r2[i].netprofitinc+  ' 总'+(r2[i].currentasset+r2[i].longtermasset).toFixed(2) + ' 债'+(((r2[i].currentliabilities+r2[i].longtermliabilities))/((r2[i].currentasset+r2[i].longtermasset))).toFixed(2);
-      DATA_STOCKINFO[''+id] = info;
+      let info = '流资' + r2[i].currentasset + ' 流债' + r2[i].currentliabilities + ' 库存' + r2[i].inventories + ' 净利' + r2[i].netprofitinc + ' 总' + (r2[i].currentasset + r2[i].longtermasset).toFixed(2) + ' 债' + (((r2[i].currentliabilities + r2[i].longtermliabilities)) / ((r2[i].currentasset + r2[i].longtermasset))).toFixed(2);
+      DATA_STOCKINFO['' + id] = info;
     }
-    console.log(DATA_STOCKINFO);
     con.query(`select * from bond where deleted=0 and lastupdated > '${dateUtils.getNowYYYYMMDD()}'`, function (err, r) {
       for (let i = 0; i < r.length; i++) {
         //console.log(r[i]);
@@ -203,6 +202,7 @@ function clearUpdatedCells() {
 }
 
 function updateCurrentTable() {
+  if (!stockUtils.isTradingTime()) return;
   let updatedCols = ["xianjia", "zhangfu", "shuiqian", "chengjiao"];
   //let tempData;
   UPDATED_TICK++;
@@ -688,7 +688,7 @@ function onTableItemClick(e) {
     let shuiqian = getStockShouyi(id, price);
     let zhesuan = getZhesuan(id, shuiqian);
     console.log(id, price, shuiqian, zhesuan);
-  } 
+  }
   // else if (prop == "info") {
   //   let m = stockUtils.getMarket(id);
   //   let info = DATA_TABLE[id].info;
