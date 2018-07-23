@@ -236,7 +236,8 @@ function updateCurrentTable() {
     //     delete UPDATED_CELLS[key];
     //   }
     // }
-    console.log(UPDATED_TICK, UPDATED_CELLS);
+    // if(Object.keys(UPDATED_CELLS).length > 0)
+      // console.log(UPDATED_TICK, UPDATED_CELLS,Object.keys(UPDATED_CELLS));
   });
 }
 

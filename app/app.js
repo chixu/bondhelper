@@ -26,6 +26,7 @@ let DATA_ZHIYA = {};
 const BOND_TABLE = require('./bondTable');
 const NEWS_NOTIFICATION = require('./components/newsNotification');
 const STOCK_NOTIFICATION = require('./components/stockNotification');
+const CB_DATA = require('./components/convertableBondData');
 // const BOND_NEWS = require('./bondNewsTable');
 const CHART = require('./chart');
 //const BOND_SELECT = require('./bondSelect');
@@ -228,6 +229,7 @@ function init2() {
             BOND_TABLE.init(con);
             CHART.init(con);
             NEWS_NOTIFICATION.init(con);
+            CB_DATA.init(con);
             STOCK_NOTIFICATION.init();
             //migrateBondData();
             initCangwei();
@@ -322,6 +324,10 @@ var director = {
   types: [],
   stocks: []
 };
+
+function updateConvertableBond() {
+  CB_DATA.updateConvertableBond();
+}
 
 function fundSelect() {
   BOND_SELECT.fundSelect();

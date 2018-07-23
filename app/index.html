@@ -33,6 +33,7 @@
   <div class="tab">
     <button class="tablinks" onclick="openCity(event, 'Table')">Table</button>
     <button class="tablinks" onclick="openCity(event, 'Info')">Info</button>
+    <button class="tablinks" onclick="openCity(event, 'Cbond')">可转债</button>
   </div>
   <div id="Table" class="tabcontent">
     <dialog id="dialogbox">
@@ -176,7 +177,12 @@
     <input type="button" onclick="getNormalBond()" value="计算标准券">
     <input type="button" onclick="sendEmail()" value="发送邮件">
   </div>
-
+  <div id="Cbond" class="tabcontent">
+    <table id="convertableBond">
+      
+    </table>
+    <input type="button" onclick="updateConvertableBond()" value="更新">
+  </div>
   <script src="./app.js"></script>
   <script>
     function openCity(evt, cityName) {
