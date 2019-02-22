@@ -118,7 +118,31 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background-color:#5cc928;
+    background-color:#ccc;
     padding: 5px 50px;
-    color: white
+    color: black;
+    font-size: 13px;
   }
+
+  .topright{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    background-color:#ccc;
+    padding: 5px 10px;
+    color: black;
+    font-size: 12px;
+  }
+
+  #searchPanel{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+
+  .header-fixed {
+    position: fixed;
+    top: 0px; display:none;
+    background-color:blue;
+}

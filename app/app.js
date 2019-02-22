@@ -14,6 +14,8 @@ const XLSX = require('xlsx');
 const MYSQL = require('mysql');
 const stockUtils = require("./utils/stock");
 const DATE = require("./utils/date");
+const TAB = require('./utils/tab.js');
+const SQLP = require('./utils/sqlPromise.js');
 
 const URL = "http://www.chinaclear.cn/zdjs/xbzzsl/center_bzzsl.shtml";
 const DL_URL = "http://www.chinaclear.cn/zdjs/editor_file/";
@@ -22,10 +24,12 @@ const DL_URL = "http://www.chinaclear.cn/zdjs/editor_file/";
 
 let DATA_CANGWEI = {};
 let DATA_ZHIYA = {};
+let ZHIYALV_WATCH_LIST = {};
 
 const BOND_TABLE = require('./bondTable');
 const NEWS_NOTIFICATION = require('./components/newsNotification');
 const STOCK_NOTIFICATION = require('./components/stockNotification');
+const BOND_HIGHLIGHT = require('./components/bondHighlight');
 const CB_DATA = require('./components/convertableBondData');
 // const BOND_NEWS = require('./bondNewsTable');
 const CHART = require('./chart');
@@ -164,103 +168,245 @@ function migrateBondData() {
   //   });
   // }
 }
-
+let accountInfo = {};
 init2();
 
+
+function getCangweiQuery(table, acc) {
+  if (acc == 'all')
+    return getCangweiQuery(table, 'tds') + ' union ' + getCangweiQuery(table, 'hz') + ' union ' +
+      getCangweiQuery(table, 'ht') + ' union ' + getCangweiQuery(table, 'yds');
+  else
+    return `select * from ${table} where account = '${acc}' and date = (select max(date) from ${table} where account = '${acc}')`;
+}
+
+function getAccountInfo(accName) {
+  if (accountInfo[accName]) {
+    return Promise.resolve(accountInfo[accName]);
+  }
+  let cangwei = {};
+  // let q = `select * from cangwei where date='${DATE.getNowYYYYMMDD()}' ` + (accName == 'all' ? "" : ` and account = '${accName}'`);
+  let q = getCangweiQuery('cangwei', accName);
+  console.log(q);
+  return SQLP.query(con, q)
+    .then(result => {
+      for (let i = 0; i < result.length; i++) {
+        let res = result[i];
+        let count = stockUtils.getStockCount(parseInt(res['count']), res.code);
+        if (cangwei[res['code']]) {
+          cangwei[res['code']].count += count;
+        } else {
+          cangwei[res['code']] = {
+            count: count,
+            price: res.price,
+            name: res.name
+          };
+        }
+      }
+    })
+    .then(() => {
+      if (accName == 'all') {
+        return SQLP.query(con, 'select * from watchlist')
+          .then(result => {
+            for (let i = 0; i < result.length; i++) {
+              let res = result[i];
+              // DATA_ZHIYA[res.code] = {
+              ZHIYALV_WATCH_LIST[res.code] = {
+                count: 0,
+                name: ""
+              };
+            }
+          });
+      } else
+        return Promise.resolve();
+    })
+    .then(() => {
+      if (accName == 'all') {
+        // return SQLP.query(con, `select * from zhiya where account = 'tds' and date = '${DATE.getNowYYYYMMDD()}'`)
+        return SQLP.query(con, getCangweiQuery('zhiya', 'tds'))
+          .then(result => {
+            for (let i = 0; i < result.length; i++) {
+              let res = result[i];
+
+              DATA_ZHIYA[res.code] = {
+                count: stockUtils.getStockCount(parseInt(res['count']), res.code),
+                price: 100,
+                name: res.name
+              };
+              ZHIYALV_WATCH_LIST[res.code] = {
+                count: DATA_ZHIYA[res.code].count,
+                name: res.name
+              }
+            }
+            for (let k in DATA_ZHIYA) {
+              if (cangwei[k] == undefined) {
+                cangwei[k] = {
+                  count: DATA_ZHIYA[k].count,
+                  price: 100,
+                  name: DATA_ZHIYA[k].name
+                };
+              } else {
+                cangwei[k].count = cangwei[k].count + DATA_ZHIYA[k].count;
+              }
+            }
+          });
+      } else if (accName == 'tds') {
+        for (let k in DATA_ZHIYA) {
+          if (cangwei[k] == undefined) {
+            cangwei[k] = DATA_ZHIYA[k];
+          } else {
+            cangwei[k].count = cangwei[k].count + DATA_ZHIYA[k].count;
+          }
+        }
+        return Promise.resolve();
+      } else
+        return Promise.resolve();
+    })
+    .then(() => {
+      let ids = '';
+      for (let k in cangwei) {
+        ids += "'" + k + "',"
+      }
+      return SQLP.query(con, `select shuiqian,code from bond where code in (${ids.substr(0, ids.length-1)})`)
+        .then(result => {
+          for (let k in cangwei) {
+            cangwei[k].shuiqian = 0;
+            for (let k2 in result) {
+              if (k == result[k2].code) {
+                cangwei[k].shuiqian = result[k2].shuiqian;
+                break;
+              }
+            }
+          }
+        });
+    })
+    .then(() => {
+      console.log('XXXXXXXXXXXXXXXXXXXXX');
+      // console.log(JSON.stringify(cangwei, 2));
+      console.log(JSON.stringify(ZHIYALV_WATCH_LIST, 2));
+      accountInfo[accName] = cangwei;
+      return Promise.resolve(cangwei);
+    });
+}
+
 function init2() {
+  let mainTab = new TAB.TabContainer('mainTab', 'Table');
+  // let accountTab = new TAB.TabContainer('accountTab');
   con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
-    con.query('select * from cangwei', function (err, result) {
-      if (err) throw err;
-      console.log(result);
-      for (let i = 0; i < result.length; i++) {
-        let res = result[i];
-        DATA_CANGWEI[res['code']] = {
-          count: parseInt(res['count']) * (stockUtils.getMarket(res.code) == 'sh' ? 10 : 1),
-          name: res.name
-        };
-      }
-      con.query('select * from watchlist', function (err, result3) {
-        if (err) throw err;
-        for (let i = 0; i < result3.length; i++) {
-          let res = result3[i];
-          DATA_ZHIYA[res.code] = {
-            count: 0,
-            name: ""
-          };
-        }
-        con.query('select * from zhiya', function (err, result2) {
-          if (err) throw err;
-          for (let i = 0; i < result2.length; i++) {
-            //DATA_ZHIYA[result2[i]['code']] = parseInt(result2[i]['count']);
-            let res = result2[i];
-            DATA_ZHIYA[res.code] = {
-              count: parseInt(res['count']) * (stockUtils.getMarket(res.code) == 'sh' ? 10 : 1),
-              name: res.name
-            };
-          }
-          for (let k in DATA_ZHIYA) {
-            if (DATA_CANGWEI[k] == undefined) {
-              DATA_CANGWEI[k] = DATA_ZHIYA[k];
-            } else {
-              DATA_CANGWEI[k].count = DATA_CANGWEI[k].count + DATA_ZHIYA[k].count;
-            }
-            // DATA_ZHIYA[k] = {
-            //   count: DATA_ZHIYA[k]
-            // };
-          }
-          let ids = '';
-          for (let k in DATA_CANGWEI) {
-            ids += "'" + k + "',"
-          }
-          con.query(`select shuiqian,code from bond where code in (${ids.substr(0, ids.length-1)})`, function (err, result3) {
-            for (let k in DATA_CANGWEI) {
-              DATA_CANGWEI[k].shuiqian = 0;
-              for (let k2 in result3) {
-                if (k == result3[k2].code) {
-                  DATA_CANGWEI[k].shuiqian = result3[k2].shuiqian;
-                  break;
-                }
-              }
-            }
-            console.log('DATA_CANGWEI', JSON.stringify(DATA_CANGWEI, null, 2));
-            console.log('DATA_ZHIYA', JSON.stringify(DATA_ZHIYA, null, 2));
-            BOND_TABLE.init(con);
-            CHART.init(con);
-            NEWS_NOTIFICATION.init(con);
-            CB_DATA.init(con);
-            STOCK_NOTIFICATION.init();
-            //migrateBondData();
-            initCangwei();
-            renderTable2();
-            renderNews();
-          });
-        });
+    // con.query('select * from cangwei', function (err, result) {
+    //   if (err) throw err;
+    //   console.log(result);
+    //   for (let i = 0; i < result.length; i++) {
+    //     let res = result[i];
+    //     DATA_CANGWEI[res['code']] = {
+    //       count: parseInt(res['count']) * (stockUtils.getMarket(res.code) == 'sh' ? 10 : 1),
+    //       name: res.name
+    //     };
+    //   }
+    //   con.query('select * from watchlist', function (err, result3) {
+    //     if (err) throw err;
+    //     for (let i = 0; i < result3.length; i++) {
+    //       let res = result3[i];
+    //       DATA_ZHIYA[res.code] = {
+    //         count: 0,
+    //         name: ""
+    //       };
+    //     }
+    //     con.query('select * from zhiya', function (err, result2) {
+    //       if (err) throw err;
+    //       for (let i = 0; i < result2.length; i++) {
+    //         //DATA_ZHIYA[result2[i]['code']] = parseInt(result2[i]['count']);
+    //         let res = result2[i];
+    //         DATA_ZHIYA[res.code] = {
+    //           count: parseInt(res['count']) * (stockUtils.getMarket(res.code) == 'sh' ? 10 : 1),
+    //           name: res.name
+    //         };
+    //       }
+    //       for (let k in DATA_ZHIYA) {
+    //         if (DATA_CANGWEI[k] == undefined) {
+    //           DATA_CANGWEI[k] = DATA_ZHIYA[k];
+    //         } else {
+    //           DATA_CANGWEI[k].count = DATA_CANGWEI[k].count + DATA_ZHIYA[k].count;
+    //         }
+    //         // DATA_ZHIYA[k] = {
+    //         //   count: DATA_ZHIYA[k]
+    //         // };
+    //       }
+    //       let ids = '';
+    //       for (let k in DATA_CANGWEI) {
+    //         ids += "'" + k + "',"
+    //       }
+    //       con.query(`select shuiqian,code from bond where code in (${ids.substr(0, ids.length-1)})`, function (err, result3) {
+    //         for (let k in DATA_CANGWEI) {
+    //           DATA_CANGWEI[k].shuiqian = 0;
+    //           for (let k2 in result3) {
+    //             if (k == result3[k2].code) {
+    //               DATA_CANGWEI[k].shuiqian = result3[k2].shuiqian;
+    //               break;
+    //             }
+    //           }
+    //         }
+    //         console.log('DATA_CANGWEI', JSON.stringify(DATA_CANGWEI, null, 2));
+    //         console.log('DATA_ZHIYA', JSON.stringify(DATA_ZHIYA, null, 2));
+    //         BOND_TABLE.init(con);
+    //         CHART.init(con);
+    //         NEWS_NOTIFICATION.init(con);
+    //         CB_DATA.init(con);
+    //         STOCK_NOTIFICATION.init();
+    //         //migrateBondData();
+    //         initCangwei();
+    //         renderTable2();
+    //         renderNews();
+    //       });
+    //     });
+    //   });
+    // });
+    getAccountInfo('all')
+      .then(result => {
+        DATA_CANGWEI = result;
+        BOND_TABLE.init(con);
+        CHART.init(con);
+        NEWS_NOTIFICATION.init(con);
+        CB_DATA.init(con);
+        STOCK_NOTIFICATION.init(con);
+        BOND_HIGHLIGHT.init(con);
+        //migrateBondData();
+        initCangwei();
+        renderZhiyaTable();
+        renderNews();
       });
-    });
   });
 }
 
-function initCangwei() {
+function initCangwei(account) {
+  account = account || 'all';
   let cangwei = document.getElementById("cangwei");
+  cangwei.innerHTML = "";
+  let data_cangwei = accountInfo[account];
+  console.log("================");
+  console.log(data_cangwei);
   let table = document.createElement("table");
   cangwei.appendChild(table);
   let total = 0;
-  for (let key in DATA_CANGWEI) {
+  for (let key in data_cangwei) {
     if (['131990', '888880'].indexOf(key) > -1)
       continue;
-    total += DATA_CANGWEI[key].count;
+    total += data_cangwei[key].count * data_cangwei[key].price;
   }
   let sortedCangwei = [];
-  for (let key in DATA_CANGWEI) {
-    let count = DATA_CANGWEI[key].count;
+  for (let key in data_cangwei) {
+    let totalprice = data_cangwei[key].count * data_cangwei[key].price;
+    if (totalprice == 0) continue;
     let inserted = false;
     for (let i = 0; i < sortedCangwei.length; i++) {
-      if (sortedCangwei[i].count < count) {
+      if (sortedCangwei[i].totalprice < totalprice) {
         sortedCangwei.splice(i, 0, {
           id: key,
-          count: count
+          count: data_cangwei[key].count,
+          price: data_cangwei[key].price,
+          totalprice: totalprice
         })
         inserted = true;
         break;
@@ -269,7 +415,9 @@ function initCangwei() {
     if (!inserted)
       sortedCangwei.push({
         id: key,
-        count: count
+        count: data_cangwei[key].count,
+        price: data_cangwei[key].price,
+        totalprice: totalprice
       });
   }
   let maxWidth = 600;
@@ -279,12 +427,15 @@ function initCangwei() {
     if (['131990', '888880'].indexOf(key) > -1)
       continue;
     let row = document.createElement("tr");
-    let count = DATA_CANGWEI[key].count;
-    totalShouyi += count / total * DATA_CANGWEI[key].shuiqian;
-    row.innerHTML = `<td>${key}</td><td>${DATA_CANGWEI[key].name}</td><td>${DATA_CANGWEI[key].count}(${(count/total*100).toFixed(2)}%)</td>
-    <td>${DATA_CANGWEI[key].shuiqian}</td><td><div style="width:${maxWidth*count/total}px;height:10px;background:blue"></div></td>`;
+    let count = data_cangwei[key].count;
+    let price = data_cangwei[key].price;
+    let totalprice = count * price;
+    totalShouyi += count / total * data_cangwei[key].shuiqian;
+    row.innerHTML = `<td>${key}</td><td>${data_cangwei[key].name}</td><td>${count}</td><td>${price}</td><td>${totalprice.toFixed(2)}(${(totalprice/total*100).toFixed(2)}%)</td>
+    <td>${data_cangwei[key].shuiqian}</td><td>${BOND_TABLE.getStockNianxian(key)}</td><td><div style="width:${maxWidth*totalprice/total}px;height:10px;background:blue"></div></td>`;
     table.appendChild(row);
   }
+  console.log('data_cangwei:', data_cangwei);
   console.log('totalShouyi:', totalShouyi);
 }
 
@@ -357,8 +508,16 @@ function sortTable() {
   BOND_TABLE.sortTable();
 }
 
+function onStockTracker() {
+  BOND_TABLE.onStockTracker();
+}
+
 function updateTableInfo() {
   BOND_TABLE.updateTableInfo();
+}
+
+function onStockNoteClick(code) {
+  STOCK_NOTIFICATION.onStockNoteClick(code);
 }
 //getNormalBond();
 
@@ -380,15 +539,18 @@ function renderNews() {
   });
 }
 
-function renderTable2() {
+function renderZhiyaTable() {
   con.query('select distinct date from zhiyalv', function (err, r1) {
+    console.log('renderZhiyaTable');
+    console.log(r1);
     BOND_DATES = [];
     for (let i = 0; i < r1.length; i++) {
       BOND_DATES.push(r1[i]['date']);
     }
     con.query('select * from zhiyalv', function (err, r2) {
       for (let i = 0; i < r2.length; i++) {
-        DATA_ZHIYA[r2[i].code][r2[i].date] = [r2[i].value];
+        if (ZHIYALV_WATCH_LIST[r2[i].code])
+          ZHIYALV_WATCH_LIST[r2[i].code][r2[i].date] = [r2[i].value];
       }
       renderTable();
     });
@@ -415,12 +577,12 @@ function renderTable() {
       szsum: 0
     };
   }
-  for (let key in DATA_ZHIYA) {
+  for (let key in ZHIYALV_WATCH_LIST) {
     let row = document.createElement("tr");
-    let rowtxt = `<td>${key}<br>${DATA_ZHIYA[key].name}</td>`;
+    let rowtxt = `<td>${key}<br>${ZHIYALV_WATCH_LIST[key].name}</td>`;
     let prevRate;
     for (let i = 0; i < BOND_DATES.length; i++) {
-      let rate = parseFloat(DATA_ZHIYA[key][BOND_DATES[i]]);
+      let rate = parseFloat(ZHIYALV_WATCH_LIST[key][BOND_DATES[i]]);
       if (i == 0) {
         prevRate = rate;
       } else {
@@ -430,9 +592,9 @@ function renderTable() {
       }
       rowtxt += `<td>${rate}</td>`;
       if (stockUtils.getMarket(key) == 'sz') {
-        dateInfo[BOND_DATES[i]].szsum += DATA_ZHIYA[key].count * rate;
+        dateInfo[BOND_DATES[i]].szsum += ZHIYALV_WATCH_LIST[key].count * rate;
       } else {
-        dateInfo[BOND_DATES[i]].shsum += DATA_ZHIYA[key].count * rate;
+        dateInfo[BOND_DATES[i]].shsum += ZHIYALV_WATCH_LIST[key].count * rate;
       }
       // dateInfo[BOND_DATES[i]].shsum += DATA_ZHIYA[key].count * rate;
     }
@@ -508,7 +670,7 @@ function getNormalBond() {
     // loadXls(firstChild)
     promise.then(() => {
       console.log("done");
-      renderTable2();
+      renderZhiyaTable();
     }).catch(e => console.log(e));
     //   .then(() => loadXls(secondChild))
     //   .then(() => console.log("2 done"));
@@ -536,12 +698,17 @@ function readXls(filename, isSZ) {
   let oldCount = 0;
   let newCount = 0;
   let notFound = [];
-  for (let k in DATA_ZHIYA)
+  for (let k in ZHIYALV_WATCH_LIST)
     notFound.push(k);
   while (code) {
     let k = code.v;
-    if (DATA_ZHIYA[k]) {
-      con.query(`insert into zhiyalv (date, code, value) values ('${date}','${k}',${ws[ratioCol + row].v})`, function (err, result2) {});
+    if (ZHIYALV_WATCH_LIST[k]) {
+      let q = `insert into zhiyalv (date, code, value) values ('${date}','${k}',${ws[ratioCol + row].v})`;
+      con.query(`insert into zhiyalv (date, code, value) values ('${date}','${k}',${ws[ratioCol + row].v})`, function (err, result2) {
+        // console.log(`insert into zhiyalv (date, code, value) values ('${date}','${k}',${ws[ratioCol + row].v})`);
+        console.log(q);
+        console.log(err);
+      });
       if (notFound.indexOf(k) > -1) {
         notFound.splice(notFound.indexOf(k), 1);
       } else {
@@ -605,13 +772,27 @@ var sound = new Howl({
   src: ['alarm.mp3']
 });
 sound.play();
+var soundPlaying = false;
 
 function showNotification(msg) {
   notificationShown = true;
-  let p = document.createElement('p');
-  p.innerText = msg;
-  document.getElementById('notification').appendChild(p);
-  sound.play();
+  let not = document.getElementById('notification');
+  if (typeof (msg) == 'string') {
+    let p = document.createElement('p');
+    p.innerText = msg;
+    not.appendChild(p);
+  } else {
+    not.appendChild(msg);
+  }
+  playNotificationSound();
+}
+
+function playNotificationSound() {
+  if (!soundPlaying) {
+    soundPlaying = true;
+    setTimeout(() => soundPlaying = false, 1000);
+    sound.play();
+  }
 }
 
 // setInterval(showNotification, 3000);
@@ -626,4 +807,11 @@ function notificationClicked() {
   // not.style.display = ''
   not.innerHTML = "";
   notificationShown = false;
+}
+
+function onAccountSelect(e) {
+  console.log(e.value, 'haha');
+  getAccountInfo(e.value)
+    .then(() => initCangwei(e.value))
+    .then(() => CHART.renderHistory(e.value));
 }

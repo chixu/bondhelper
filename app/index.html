@@ -28,178 +28,219 @@
 
 <body>
   <div id="notification" class="notification" onclick="notificationClicked()">
-
   </div>
-  <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'Table')">Table</button>
-    <button class="tablinks" onclick="openCity(event, 'Info')">Info</button>
-    <button class="tablinks" onclick="openCity(event, 'Cbond')">可转债</button>
-  </div>
-  <div id="Table" class="tabcontent">
-    <dialog id="dialogbox">
-      <h3 id="dialog_title"></h3>
-      <table style="width:100%">
-        <tr>
-          <td>Hint</td>
-          <td>
-            <input type="text" id="dialog_hint" style="width:100%" />
-          </td>
-        </tr>
-        <tr>
-          <td>Stock Code</td>
-          <td>
-            <input type="text" id="dialog_stockcode" style="width:100%" />
-          </td>
-        </tr>
-        <tr>
-          <td>Info</td>
-          <td>
-            <textarea type="text" id="dialog_info" rows="3" style="width:100%">
-            </textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Color</td>
-          <td>
-            <span id="dialog_colors">
-              <span class="color-option" style="background-color:#f66" onclick="selectDialogColor()"></span>
-              <span class="color-option" style="background-color:#ffa500" onclick="selectDialogColor()"></span>
-              <span class="color-option" style="background-color:#d3ffce" onclick="selectDialogColor()"></span>
-            </span>
-          </td>
-        </tr>
-      </table>
-      <br/>
-      <button id="dialog_save">Save</button>
-      <button id="dialog_exit">Close</button>
-      <button id="dialog_delete">Delete</button>
-    </dialog>
-    <textarea id="input" type="text" rows="3">
-    </textarea>
-    <br/>
-    <input type="button" onclick="fundSelect()" value="Select">
-    <input type="button" onclick="parseTable()" value="Parse">
-    <input type="button" onclick="updateTableInfo()" value="Update Info">
-    <br/>
-    <div id="filter">
-      <table>
-        <tr>
-          <td>黑名单</td>
-          <td>
-            <input type="button" value="保存" />
-          </td>
-          <td/>
-          <td>
-            <textarea id="idblacklist" type="text" rows="1">
-            </textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>非Q债</td>
-          <td>
-            <input id="isq" type="checkbox">
-          </td>
-        </tr>
-        <tr>
-          <td>持有</td>
-          <td>
-            <input id="isinstock" type="checkbox">
-          </td>
-        </tr>
-        <tr>
-          <td>成交</td>
-          <td>
-            <input class="short" id="chengjiaofrom" type="text">
-          </td>
-          <td>-</td>
-          <td>
-            <input class="short" id="chengjiaoto" type="text">
-          </td>
-        </tr>
-        <tr>
-          <td>年限</td>
-          <td>
-            <input class="short" id="nianxianfrom" type="text" value="0.01">
-          </td>
-          <td>-</td>
-          <td>
-            <input class="short" id="nianxianto" type="text" value="0.5">
-          </td>
-        </tr>
-        <tr>
-          <td>税前</td>
-          <td>
-            <input class="short" id="shuiqianfrom" type="text" value="7">
-          </td>
-          <td>-</td>
-          <td>
-            <input class="short" id="shuiqianto" type="text">
-          </td>
-        </tr>
-        <tr>
-          <td>税前+回购</td>
-          <td>
-            <input class="short" id="shuiqianhuigoufrom" type="text">
-          </td>
-          <td>-</td>
-          <td>
-            <input class="short" id="shuiqianhuigouto" type="text">
-          </td>
-        </tr>
-        <tr>
-          <td>信用</td>
-          <td>
-            <input class="short" id="xinyong" type="text" value="AA-">
-          </td>
-        </tr>
-      </table>
-      <input type="button" onclick="sortTable()" value="Filter">
-      <input type="button" onclick="updateTableAllRows()" value="Update Table">
+  <div class="topright">
+    <div id="bondInfo">
     </div>
-    <table id="table" class="tablesorter" style="font-size:13px">
-    </table>
+    <div id="bondHighlight">
+    </div>
+  </div>
+  <div id="searchPanel">
+    <input type="text">
+  </div>
+  <div id="mainTab">
+    <div class="tab">
+      <button class="tablinks" value="Table">Table</button>
+      <button class="tablinks" value="Info">Info</button>
+      <button class="tablinks" value="Cbond">可转债</button>
+    </div>
+    <div id="Table" class="tabcontent">
+      <dialog id="dialogbox">
+        <h3 id="dialog_title"></h3>
+        <table style="width:100%">
+          <tr>
+            <td>Hint</td>
+            <td>
+              <input type="text" id="dialog_hint" style="width:100%" />
+            </td>
+          </tr>
+          <tr>
+            <td>Stock Code</td>
+            <td>
+              <input type="text" id="dialog_stockcode" style="width:100%" />
+            </td>
+          </tr>
+          <tr>
+            <td>Info</td>
+            <td>
+              <textarea type="text" id="dialog_info" rows="3" style="width:100%">
+              </textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Color</td>
+            <td>
+              <span id="dialog_colors">
+                <span class="color-option" style="background-color:#f66" onclick="selectDialogColor()"></span>
+                <span class="color-option" style="background-color:#ffa500" onclick="selectDialogColor()"></span>
+                <span class="color-option" style="background-color:#d3ffce" onclick="selectDialogColor()"></span>
+              </span>
+            </td>
+          </tr>
+        </table>
+        <br />
+        <button id="dialog_save">Save</button>
+        <button id="dialog_exit">Close</button>
+        <button id="dialog_delete">Delete</button>
+      </dialog>
+      <textarea id="input" type="text" rows="3">
+      </textarea>
+      <br />
+      <input type="button" onclick="fundSelect()" value="Select">
+      <input type="button" onclick="parseTable()" value="Parse">
+      <input type="button" onclick="updateTableInfo()" value="Update Info">
+      <br />
+      <div id="filter">
+        <table>
+          <tr>
+            <td>黑名单</td>
+            <td>
+              <input type="button" value="保存" />
+            </td>
+            <td />
+            <td>
+              <textarea id="idblacklist" type="text" rows="1">
+              </textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>非Q债</td>
+            <td>
+              <input id="isq" type="checkbox">
+            </td>
+          </tr>
+          <tr>
+            <td>持有</td>
+            <td>
+              <input id="isinstock" type="checkbox">
+            </td>
+          </tr>
+          <tr>
+            <td>无介绍</td>
+            <td>
+              <input id="isinfonull" type="checkbox">
+            </td>
+          </tr>
+          <tr>
+            <td>rank</td>
+            <td>
+              <input class="short" id="rankfrom" type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>最近成交</td>
+            <td>
+              <input class="short" id="zuijinchengjiaofrom" type="text">
+            </td>
+            <td>-</td>
+            <td>
+              <input class="short" id="zuijinchengjiaoto" type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>成交</td>
+            <td>
+              <input class="short" id="chengjiaofrom" type="text">
+            </td>
+            <td>-</td>
+            <td>
+              <input class="short" id="chengjiaoto" type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>年限</td>
+            <td>
+              <input class="short" id="nianxianfrom" type="text" value="0.01">
+            </td>
+            <td>-</td>
+            <td>
+              <input class="short" id="nianxianto" type="text" value="1">
+            </td>
+          </tr>
+          <tr>
+            <td>税前</td>
+            <td>
+              <input class="short" id="shuiqianfrom" type="text" value="3.9">
+            </td>
+            <td>-</td>
+            <td>
+              <input class="short" id="shuiqianto" type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>税前+回购</td>
+            <td>
+              <input class="short" id="shuiqianhuigoufrom" type="text">
+            </td>
+            <td>-</td>
+            <td>
+              <input class="short" id="shuiqianhuigouto" type="text">
+            </td>
+          </tr>
+          <tr>
+            <td>信用</td>
+            <td>
+              <input class="short" id="xinyong" type="text" value="AAA">
+            </td>
+          </tr>
+        </table>
+        <input type="button" onclick="sortTable()" value="Filter">
+        <input type="button" onclick="updateTableAllRows()" value="Update Table">
+        <input type="button" onclick="onStockTracker()" value="Track Stock">
+      </div>
+      <table id="table" class="tablesorter" style="font-size:12px">
+      </table>
+    </div>
+    <div id="Info" class="tabcontent">
+      <select class="w3-select" onchange="onAccountSelect(this)">
+        <option value="all">All</option>
+        <option value="tds">tds</option>
+        <option value="hz">hz</option>
+        <option value="ht">ht</option>
+        <option value="yds">yds</option>
+      </select>
+      <div id="tosend">
+        <h4>仓位</h4>
+        <div id="cangwei" class="w3-ul">
+        </div>
+        <div id="container"></div>
+        <div id="container2"></div>
+        <h4>标准券</h4>
+        <div id="bondResult" class="w3-ul">
+        </div>
+        <h4>公告</h4>
+        <div id="bondNews" class="w3-ul">
+        </div>
+      </div>
+      <input type="button" onclick="getNormalBond()" value="计算标准券">
+      <input type="button" onclick="sendEmail()" value="发送邮件">
+    </div>
+    <div id="Cbond" class="tabcontent">
+      <table id="convertableBond">
+
+      </table>
+      <input type="button" onclick="updateConvertableBond()" value="更新">
+    </div>
   </div>
 
-  <div id="Info" class="tabcontent">
-    <div id="tosend">
-      <h4>仓位</h4>
-      <div id="cangwei" class="w3-ul">
-      </div>
-      <div id="container"></div>
-      <div id="container2"></div>
-      <h4>标准券</h4>
-      <div id="bondResult" class="w3-ul">
-      </div>
-      <h4>公告</h4>
-      <div id="bondNews" class="w3-ul">
-      </div>
-    </div>
-    <input type="button" onclick="getNormalBond()" value="计算标准券">
-    <input type="button" onclick="sendEmail()" value="发送邮件">
-  </div>
-  <div id="Cbond" class="tabcontent">
-    <table id="convertableBond">
-      
-    </table>
-    <input type="button" onclick="updateConvertableBond()" value="更新">
-  </div>
   <script src="./app.js"></script>
+  <script src="./components/search.js"></script>
   <script>
-    function openCity(evt, cityName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(cityName).style.display = "block";
-      if (evt)
-        evt.currentTarget.className += " active";
-    }
-    openCity(undefined, 'Table');
+    // function openCity(evt, cityName) {
+    //   var i, tabcontent, tablinks;
+    //   tabcontent = document.getElementsByClassName("tabcontent");
+    //   for (i = 0; i < tabcontent.length; i++) {
+    //     tabcontent[i].style.display = "none";
+    //   }
+    //   tablinks = document.getElementsByClassName("tablinks");
+    //   for (i = 0; i < tablinks.length; i++) {
+    //     tablinks[i].className = tablinks[i].className.replace(" active", "");
+    //   }
+    //   document.getElementById(cityName).style.display = "block";
+    //   if (evt)
+    //     evt.currentTarget.className += " active";
+    // }
+    // openCity(undefined, 'Table');
   </script>
 </body>
 

@@ -44,11 +44,14 @@ function getConvertBondInfo() {
             let d = rows[i].cell;
             let query = "";
             let values = [];
+            let sqlData = {};
             for (let j = 0; j < datatableCols.length; j++) {
-                values.push(d[getDataStructItem(datatableCols[j], 'tr')['s']]);
+                let value = d[getDataStructItem(datatableCols[j], 'tr')['s']];
+                data[datatableCols[j]] = value
+                values.push(value);
             }
             // console.log(sqlBuilder.insertOrUpdate('cbond', datatableCols, values));
-            con.query(sqlBuilder.insertOrUpdate('convertbond', datatableCols, values));
+            con.query(sqlBuilder.insertOrUpdate('convertbond', sqlData));
         }
         _resolve();
     });

@@ -12,12 +12,15 @@ module.exports = {
   getDateString: getDateString,
   getNowYYYYMMDD: getNowYYYYMMDD,
   getDashYYYYMMDD: getDashYYYYMMDD,
+  getNowYYYYMMDDHHmm: getNowYYYYMMDDHHmm,
+  getNowYYYYMMDDHHmmSS: getNowYYYYMMDDHHmmSS,
   pad: pad
 };
 
 function getNowYYYYMMDD() {
   let now = new Date();
   return now.getFullYear() + pad(now.getMonth()+1, 2) + pad(now.getDate(), 2);
+  // return '20190201';
 }
 
 function getDashYYYYMMDD(d) {
@@ -29,6 +32,11 @@ function getDashYYYYMMDD(d) {
 function getNowYYYYMMDDHHmm() {
   let now = new Date();
   return now.getFullYear() + pad(now.getMonth()+1, 2) + pad(now.getDate(), 2) + pad(now.getHours(), 2) + pad(now.getMinutes(), 2);
+}
+
+function getNowYYYYMMDDHHmmSS() {
+  let now = new Date();
+  return now.getFullYear() + pad(now.getMonth()+1, 2) + pad(now.getDate(), 2) + pad(now.getHours(), 2) + pad(now.getMinutes(), 2) + pad(now.getSeconds(), 2);
 }
 
 Date.prototype.addDays = function (days) {

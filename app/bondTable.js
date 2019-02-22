@@ -2,26 +2,26 @@ let JISILU_URL = "https://www.jisilu.cn/data/bond/?do_search=true&sort_column=&s
 let JISILU_INFO_URL = "https://www.jisilu.cn/data/bond/detail/";
 let STOCK_API = "http://hq.sinajs.cn/list=";
 let BOND_DATA = {};
-let IDX_TABLE_ID = 0;
-let IDX_TABLE_NAME = 1;
-let IDX_TABLE_XIANJIA = 2;
-let IDX_TABLE_QUANJIA = 3;
-let IDX_TABLE_ZHANGFU = 4;
-let IDX_TABLE_CHENGJIAO = 5;
-let IDX_TABLE_JUFUXI = 6;
-let IDX_TABLE_NIANXIAN = 7;
-let IDX_TABLE_SHUIQIAN = 9;
-let IDX_TABLE_SHUIHOU = 10;
-let IDX_TABLE_PIAOXI = 11;
-let IDX_TABLE_ZHESUAN = 12;
-let IDX_TABLE_XINYONG = 14;
-let IDX_TABLE_DANBAO = 16;
-let IDX_TABLE_DAOQI = 17;
-let IDX_TABLE_GUIMO = 18;
-let IDX_TABLE_15 = 19;
-let IDX_TABLE_16 = 20;
-let IDX_TABLE_BEIZHU = 21;
-let XINYONG_RANK = ["AAA", "AA+", "AA", "AA-"];
+// let IDX_TABLE_ID = 0;
+// let IDX_TABLE_NAME = 1;
+// let IDX_TABLE_XIANJIA = 2;
+// let IDX_TABLE_QUANJIA = 3;
+// let IDX_TABLE_ZHANGFU = 4;
+// let IDX_TABLE_CHENGJIAO = 5;
+// let IDX_TABLE_JUFUXI = 6;
+// let IDX_TABLE_NIANXIAN = 7;
+// let IDX_TABLE_SHUIQIAN = 9;
+// let IDX_TABLE_SHUIHOU = 10;
+// let IDX_TABLE_PIAOXI = 11;
+// let IDX_TABLE_ZHESUAN = 12;
+// let IDX_TABLE_XINYONG = 14;
+// let IDX_TABLE_DANBAO = 16;
+// let IDX_TABLE_DAOQI = 17;
+// let IDX_TABLE_GUIMO = 18;
+// let IDX_TABLE_15 = 19;
+// let IDX_TABLE_16 = 20;
+// let IDX_TABLE_BEIZHU = 21;
+let XINYONG_RANK = ["AAA", "AA+", "AA", "AA-", "A", "BBB", "BBB-", "BB", "B", "CCC", "CC", "C"];
 const stockAPIPara = {
   xianjia: 3,
   chengjiao: 9,
@@ -31,9 +31,9 @@ const stockAPIPara = {
   sell1price: 21,
 }
 const TABLE_COLS = [{
-  k: "count",
-  v: "数量"
-}, {
+  //   k: "count",
+  //   v: "数量"
+  // }, {
   k: "id",
   v: "代码"
 }, {
@@ -55,14 +55,17 @@ const TABLE_COLS = [{
   k: "shuiqianhuigou",
   v: "税前+回购"
 }, {
-  k: "buy1",
-  v: "买一"
-}, {
+  //   k: "buy1",
+  //   v: "买一"
+  // }, {
   k: "sell1",
   v: "卖一"
 }, {
   k: "chengjiao",
   v: "成交"
+}, {
+  k: "zuijinchengjiao",
+  v: "最近成交"
 }, {
   //   k: "jufuxi",
   //   v: "距付息"
@@ -79,6 +82,24 @@ const TABLE_COLS = [{
   k: "xinyong",
   v: "信用"
 }, {
+  k: "liudong",
+  v: "流动"
+}, {
+  k: "sudong",
+  v: "速动"
+}, {
+  k: "cashguimo",
+  v: "现金比"
+}, {
+  k: "yingyeguimo",
+  v: "营业比"
+}, {
+  k: "rank",
+  v: "Rank"
+}, {
+  k: "rank2",
+  v: "Rank2"
+}, {
   k: "guimo",
   v: "规模"
 }, {
@@ -91,13 +112,19 @@ const TABLE_COLS = [{
 
 var con;
 var DATA_TABLE = {};
+var STATS = {};
 var DATA_STOCKINFO = {};
-var DATA_COLS = "color,comment,stockcode,name,xianjia,quanjia,zhangfu,chengjiao,jufuxi,nianxian,shuiqian,shuihou,piaoxi,zhesuan,xinyong,danbao,guimo,info,comment".split(',');
+var DATA_COLS = "color,comment,stockcode,name,xianjia,quanjia,zhangfu,chengjiao,zuijinchengjiao,jufuxi,nianxian,shuiqian,shuihou,piaoxi,zhesuan,xinyong,danbao,guimo,info,comment,rank,rank2,cashguimo,liudong,sudong,yingyeguimo".split(',');
 const stockUtils = require("./utils/stock");
 const dateUtils = require("./utils/date");
+const mathUtils = require("./utils/math");
+const stockTracker = require("./components/stockTracker");
 // DATA_TABLE = JSON.parse(FS.readFileSync("table.json", "utf8"));
 let CUR_TABLE;
 let UPDATED_CELLS;
+let COLOR = {
+  track: '#ffa500'
+}
 
 
 
@@ -118,29 +145,60 @@ function init(_con) {
       let info = '流资' + r2[i].currentasset + ' 流债' + r2[i].currentliabilities + ' 库存' + r2[i].inventories + ' 净利' + r2[i].netprofitinc + ' 总' + (r2[i].currentasset + r2[i].longtermasset).toFixed(2) + ' 债' + (((r2[i].currentliabilities + r2[i].longtermliabilities)) / ((r2[i].currentasset + r2[i].longtermasset))).toFixed(2);
       DATA_STOCKINFO['' + id] = info;
     }
-    con.query(`select * from bond where deleted=0 and lastupdated > '${dateUtils.getNowYYYYMMDD()}'`, function (err, r) {
-      for (let i = 0; i < r.length; i++) {
-        //console.log(r[i]);
-        let id = r[i].code;
-        let obj = {
-          'id': id
-        };
-        for (let j = 0; j < DATA_COLS.length; j++) {
-          obj[DATA_COLS[j]] = r[i][DATA_COLS[j]];
-        }
-        //migration
-        // if (obj.info) {
-        //   let m = obj.info.match(/\d{6}/);
-        //   if (m)
-        //     //console.log(id, m[0]);
-        //     con.query(`update bond set stockcode = '${m[0]}' where code='${id}'`);
-        // }
-        DATA_TABLE[id] = obj;
-      }
+    con.query(getSelectBondQuery(), function (err, r) {
+      // for (let i = 0; i < r.length; i++) {
+      //   //console.log(r[i]);
+      //   let id = r[i].code;
+      //   let obj = {
+      //     'id': id
+      //   };
+      //   for (let j = 0; j < DATA_COLS.length; j++) {
+      //     obj[DATA_COLS[j]] = r[i][DATA_COLS[j]];
+      //   }
+      //   //migration
+      //   // if (obj.info) {
+      //   //   let m = obj.info.match(/\d{6}/);
+      //   //   if (m)
+      //   //     //console.log(id, m[0]);
+      //   //     con.query(`update bond set stockcode = '${m[0]}' where code='${id}'`);
+      //   // }
+      //   DATA_TABLE[id] = obj;
+      // }
+      parseBondQueryData(r);
       createTable();
       setInterval(updateCurrentTable, 10000);
     });
   });
+}
+
+function getSelectBondQuery() {
+  return `select bond.*, ROUND(money_cap/guimo/100000000,2) as cashguimo,
+  ROUND(total_cur_assets/total_cur_liab,2) as liudong,
+  ROUND((total_cur_assets-inventories)/total_cur_liab,2) as sudong,
+  ROUND(revenue/guimo/100000000,2) as yingyeguimo,
+  rank as rank2
+  from bond 
+  left join stockbondinfo
+  on bond.stockcode = stockbondinfo.code
+  where deleted=0 and bond.lastupdated > '${dateUtils.getNowYYYYMMDD()}'`;
+}
+
+function parseBondQueryData(r) {
+  for (let i = 0; i < r.length; i++) {
+    let id = r[i].code;
+    let obj = {
+      'id': id
+    };
+    for (let j = 0; j < DATA_COLS.length; j++) {
+      obj[DATA_COLS[j]] = r[i][DATA_COLS[j]];
+    }
+    DATA_TABLE[id] = obj;
+  }
+  //update rank2
+  for (let k in DATA_TABLE) {
+    let d = DATA_TABLE[k];
+    d["rank2"] = Math.round(getRank2(d) * 100) / 100;
+  }
 }
 //updateTable("112188", "info");
 //updateTableAllRows();
@@ -206,18 +264,19 @@ function updateCurrentTable() {
   let updatedCols = ["xianjia", "zhangfu", "shuiqian", "chengjiao"];
   //let tempData;
   UPDATED_TICK++;
-  con.query(`select * from bond where deleted=0 and lastupdated > '${dateUtils.getNowYYYYMMDD()}'`, function (err, r) {
-    for (let i = 0; i < r.length; i++) {
-      //console.log(r[i]);
-      let id = r[i].code;
-      let obj = {
-        'id': id
-      };
-      for (let j = 0; j < DATA_COLS.length; j++) {
-        obj[DATA_COLS[j]] = r[i][DATA_COLS[j]];
-      }
-      DATA_TABLE[id] = obj;
-    }
+  con.query(getSelectBondQuery(), function (err, r) {
+    // for (let i = 0; i < r.length; i++) {
+    //   //console.log(r[i]);
+    //   let id = r[i].code;
+    //   let obj = {
+    //     'id': id
+    //   };
+    //   for (let j = 0; j < DATA_COLS.length; j++) {
+    //     obj[DATA_COLS[j]] = r[i][DATA_COLS[j]];
+    //   }
+    //   DATA_TABLE[id] = obj;
+    // }
+    parseBondQueryData(r);
     for (let key in CUR_TABLE) {
       for (let i = 0; i < updatedCols.length; i++) {
         let col = updatedCols[i];
@@ -237,7 +296,7 @@ function updateCurrentTable() {
     //   }
     // }
     // if(Object.keys(UPDATED_CELLS).length > 0)
-      // console.log(UPDATED_TICK, UPDATED_CELLS,Object.keys(UPDATED_CELLS));
+    // console.log(UPDATED_TICK, UPDATED_CELLS,Object.keys(UPDATED_CELLS));
   });
 }
 
@@ -253,12 +312,27 @@ function updateTableAllRows() {
   });
 }
 
+function getBondName(id) {
+  return DATA_TABLE[id].name;
+}
+
+function getBondData(id) {
+  return DATA_TABLE[id];
+}
 
 function getStockShouyi(id, xianjia) {
+  if (DATA_TABLE[id] == undefined || xianjia == 0)
+    return 0;
   let jufuxi = DATA_TABLE[id].jufuxi;
   let piaoxi = parseFloat(DATA_TABLE[id].piaoxi);
   let quanjia = xianjia + piaoxi * (366 - jufuxi) / 365;
   return Math.round(((100 + piaoxi) / quanjia - 1) / jufuxi * 3650000) / 100;
+}
+
+function getStockNianxian(id) {
+  if (DATA_TABLE[id] == undefined)
+    return -1;
+  return DATA_TABLE[id].nianxian;
 }
 
 function updateTableInfo() {
@@ -280,7 +354,7 @@ function getStockUrl(id) {
     return STOCK_API + "sh" + id;
 }
 
-function updateTable(id, col, value) {
+function updateTableRow(id, col, value) {
   let idx = -1;
   for (let i = 0; i < TABLE_COLS.length; i++) {
     if (col == TABLE_COLS[i].k) {
@@ -308,10 +382,10 @@ function getStockInfo(stockNum) {
     let buyZhesuan = getZhesuanByPrice(stockNum, parseFloat(result[stockAPIPara["buy1price"]]));
     let sellZhesuan = getZhesuanByPrice(stockNum, parseFloat(result[stockAPIPara["sell1price"]]));
     console.log(result[stockAPIPara["buy1price"]], buyZhesuan);
-    updateTable(stockNum, "buy1", buyZhesuan);
-    updateTable(stockNum, "sell1", sellZhesuan);
+    updateTableRow(stockNum, "buy1", buyZhesuan);
+    updateTableRow(stockNum, "sell1", sellZhesuan);
     let chengjiao = Math.round(result[stockAPIPara["chengjiao"]] / 1000) / 10;
-    updateTable(stockNum, "chengjiao", chengjiao);
+    updateTableRow(stockNum, "chengjiao", chengjiao);
     // let xianjia = parseFloat(result[stockAPIPara["xianjia"]]);
     // updateTable(stockNum, "xianjia", xianjia);
     // let shuiqian = getStockShouyi(stockNum, xianjia);
@@ -350,84 +424,87 @@ function saveConfig() {
   console.log("saved...");
 }
 
-function parseTable() {
-  let input = document.getElementById("input").value;
-  let html = document.createElement("div");
-  html.innerHTML = input;
+// function parseTable() {
+//   let input = document.getElementById("input").value;
+//   let html = document.createElement("div");
+//   html.innerHTML = input;
 
-  let list = html.querySelector("#bond_table_body");
-  xml.forEachElement(list, (n, i) => {
-    let d = {};
-    xml.forEachElement(n, (nn, ii) => {
-      if (ii == IDX_TABLE_ID) {
-        d.id = xml.child(nn, 0).innerText;
-      } else if (ii == IDX_TABLE_NAME) {
-        d.name = nn.innerText;
-      } else if (ii == IDX_TABLE_XIANJIA) {
-        d.xianjia = nn.innerText;
-      } else if (ii == IDX_TABLE_QUANJIA) {
-        d.quanjia = nn.innerText;
-      } else if (ii == IDX_TABLE_ZHANGFU) {
-        d.zhangfu = nn.innerText;
-      } else if (ii == IDX_TABLE_CHENGJIAO) {
-        d.chengjiao = parseFloat(nn.innerText);
-      } else if (ii == IDX_TABLE_JUFUXI) {
-        d.jufuxi = nn.innerText;
-      } else if (ii == IDX_TABLE_NIANXIAN) {
-        d.nianxian = parseFloat(nn.innerText.split('/')[0]);
-      } else if (ii == IDX_TABLE_SHUIQIAN) {
-        let arr = nn.innerText.trim().split('/');
-        if (arr.length == 1) arr.push(0);
-        d.shuiqian = parseFloat(arr[0]);
-        d.shuiqian2 = parseFloat(arr[0]);
-        // if (shuiqian.indexOf('/') > -1) {
-        //   d.shuiqian = shuiqian.substr(0, shuiqian.indexOf('/'));
-        //   d.shuiqian2 = shuiqian.substr(shuiqian.indexOf('/') + 1, shuiqian.length - shuiqian.indexOf('/') - 2);
-        // } else {
-        //   d.shuiqian = shuiqian.substr(0, shuiqian.length - 1);
-        //   d.shuiqian2 = 0;
-        // }
-      } else if (ii == IDX_TABLE_SHUIHOU) {
-        let shuihou = nn.innerText.trim();
-        if (shuihou.indexOf('/') > -1) {
-          d.shuihou = shuihou.substr(0, shuihou.indexOf('/'));
-          d.shuihou2 = shuihou.substr(shuihou.indexOf('/') + 1, shuihou.length - shuihou.indexOf('/') - 2);
-        } else {
-          d.shuihou = shuihou.substr(0, shuihou.length - 1);
-          d.shuihou2 = "";
-        }
-      } else if (ii == IDX_TABLE_PIAOXI) {
-        d.piaoxi = parseFloat(nn.innerText);
-      } else if (ii == IDX_TABLE_ZHESUAN) {
-        d.zhesuan = parseFloat(nn.innerText);
-      } else if (ii == IDX_TABLE_XINYONG) {
-        d.xinyong = nn.innerText;
-      } else if (ii == IDX_TABLE_DANBAO) {
-        d.danbao = nn.innerText;
-      } else if (ii == IDX_TABLE_GUIMO) {
-        d.guimo = nn.innerText;
-      }
-    });
-    if (!DATA_TABLE[d.id]) {
-      console.warn(d.id + " not found");
-      DATA_TABLE[d.id] = d;
-    } else {
-      for (let k in d) {
-        if (DATA_TABLE[d.id][k] != d[k]) {
-          console.log(d.id + " " + k + ": " + DATA_TABLE[d.id][k] + " => " + d[k]);
-          DATA_TABLE[d.id][k] = d[k];
-        }
-      }
-    }
-    //DATA_TABLE[d.id] = d;
-  });
-  // saveDataTable();
-  createTable();
-}
+//   let list = html.querySelector("#bond_table_body");
+//   xml.forEachElement(list, (n, i) => {
+//     let d = {};
+//     xml.forEachElement(n, (nn, ii) => {
+//       if (ii == IDX_TABLE_ID) {
+//         d.id = xml.child(nn, 0).innerText;
+//       } else if (ii == IDX_TABLE_NAME) {
+//         d.name = nn.innerText;
+//       } else if (ii == IDX_TABLE_XIANJIA) {
+//         d.xianjia = nn.innerText;
+//       } else if (ii == IDX_TABLE_QUANJIA) {
+//         d.quanjia = nn.innerText;
+//       } else if (ii == IDX_TABLE_ZHANGFU) {
+//         d.zhangfu = nn.innerText;
+//       } else if (ii == IDX_TABLE_CHENGJIAO) {
+//         d.chengjiao = parseFloat(nn.innerText);
+//       } else if (ii == IDX_TABLE_JUFUXI) {
+//         d.jufuxi = nn.innerText;
+//       } else if (ii == IDX_TABLE_NIANXIAN) {
+//         d.nianxian = parseFloat(nn.innerText.split('/')[0]);
+//       } else if (ii == IDX_TABLE_SHUIQIAN) {
+//         let arr = nn.innerText.trim().split('/');
+//         if (arr.length == 1) arr.push(0);
+//         d.shuiqian = parseFloat(arr[0]);
+//         d.shuiqian2 = parseFloat(arr[0]);
+//         // if (shuiqian.indexOf('/') > -1) {
+//         //   d.shuiqian = shuiqian.substr(0, shuiqian.indexOf('/'));
+//         //   d.shuiqian2 = shuiqian.substr(shuiqian.indexOf('/') + 1, shuiqian.length - shuiqian.indexOf('/') - 2);
+//         // } else {
+//         //   d.shuiqian = shuiqian.substr(0, shuiqian.length - 1);
+//         //   d.shuiqian2 = 0;
+//         // }
+//       } else if (ii == IDX_TABLE_SHUIHOU) {
+//         let shuihou = nn.innerText.trim();
+//         if (shuihou.indexOf('/') > -1) {
+//           d.shuihou = shuihou.substr(0, shuihou.indexOf('/'));
+//           d.shuihou2 = shuihou.substr(shuihou.indexOf('/') + 1, shuihou.length - shuihou.indexOf('/') - 2);
+//         } else {
+//           d.shuihou = shuihou.substr(0, shuihou.length - 1);
+//           d.shuihou2 = "";
+//         }
+//       } else if (ii == IDX_TABLE_PIAOXI) {
+//         d.piaoxi = parseFloat(nn.innerText);
+//       } else if (ii == IDX_TABLE_ZHESUAN) {
+//         d.zhesuan = parseFloat(nn.innerText);
+//       } else if (ii == IDX_TABLE_XINYONG) {
+//         d.xinyong = nn.innerText;
+//       } else if (ii == IDX_TABLE_DANBAO) {
+//         d.danbao = nn.innerText;
+//       } else if (ii == IDX_TABLE_GUIMO) {
+//         d.guimo = nn.innerText;
+//       }
+//     });
+//     if (!DATA_TABLE[d.id]) {
+//       console.warn(d.id + " not found");
+//       DATA_TABLE[d.id] = d;
+//     } else {
+//       for (let k in d) {
+//         if (DATA_TABLE[d.id][k] != d[k]) {
+//           console.log(d.id + " " + k + ": " + DATA_TABLE[d.id][k] + " => " + d[k]);
+//           DATA_TABLE[d.id][k] = d[k];
+//         }
+//       }
+//     }
+//     //DATA_TABLE[d.id] = d;
+//   });
+//   // saveDataTable();
+//   createTable();
+// }
 
 function sortTable() {
   let dataTable = filterTable(DATA_TABLE, "isq", null, document.getElementById("isq").checked);
   dataTable = filterTable(dataTable, "xinyong", "greater", document.getElementById("xinyong").value);
+  dataTable = filterTable(dataTable, "zuijinchengjiao", "greater", parseFloat(document.getElementById("zuijinchengjiaofrom").value));
+  dataTable = filterTable(dataTable, "zuijinchengjiao", "less", parseFloat(document.getElementById("zuijinchengjiaoto").value));
+
   dataTable = filterTable(dataTable, "chengjiao", "greater", parseFloat(document.getElementById("chengjiaofrom").value));
   dataTable = filterTable(dataTable, "chengjiao", "less", parseFloat(document.getElementById("chengjiaoto").value));
 
@@ -440,6 +517,8 @@ function sortTable() {
   dataTable = filterTable(dataTable, "shuiqianhuigou", "greater", parseFloat(document.getElementById("shuiqianhuigoufrom").value));
   dataTable = filterTable(dataTable, "shuiqianhuigou", "less", parseFloat(document.getElementById("shuiqianhuigouto").value));
 
+  dataTable = filterTable(dataTable, "rank", "greater", parseFloat(document.getElementById("rankfrom").value));
+
   //dataTable = filterTableIn(dataTable, "id", CONFIG.blacklist, true);
   if (document.getElementById("isinstock").checked) {
     let values = [];
@@ -447,6 +526,16 @@ function sortTable() {
       values.push(key);
     }
     dataTable = filterTableIn(dataTable, "id", values);
+  }
+
+  if (document.getElementById("isinfonull").checked) {
+    let res = {};
+    for (let key in dataTable) {
+      let info = dataTable[key].info;
+      if (!info || info.trim() == "" || info.trim().toLowerCase() == 'null')
+        res[key] = dataTable[key];
+    }
+    dataTable = res;
   }
   createTable(dataTable);
 }
@@ -508,6 +597,29 @@ function compareAttr(v1, op, v2, type) {
   }
 }
 
+function printBondInfo(code) {
+  // console.log(code);
+  let d = DATA_TABLE[code];
+  if (!d) return "";
+  let str = "";
+  let newline = "\n";
+  let ignoreCols = ["zhangfu", "shuiqianhuigou", "sell1", "chengjiao"];
+  let rankCols = ["cashguimo", "liudong", "sudong", "yingyeguimo"];
+  for (let i = 0; i < TABLE_COLS.length; i++) {
+    let keyname = TABLE_COLS[i].v;
+    let key = TABLE_COLS[i].k;
+    if (ignoreCols.indexOf(key) == -1 && d[key]) {
+      if (rankCols.indexOf(key) > -1) {
+        let r = getRankValue(key, d[key]);
+        str += keyname + ": " + d[key] + (r == 0 ? "" : "(" + r.toFixed(1) + ")") + newline;
+      } else
+        str += keyname + ": " + d[key] + newline;
+    }
+  }
+  return str;
+  // console.log(str);
+}
+
 function createTable(dataTable) {
   if (dataTable == undefined) dataTable = DATA_TABLE;
   clearUpdatedCells();
@@ -524,6 +636,8 @@ function createTable(dataTable) {
   }
   headerHtml += "</tr>";
   header.innerHTML = headerHtml;
+  // header.className = "header-fixed";
+  // header.style.display = "table-header-group";
   table.appendChild(header);
   let tbody = document.createElement("tbody");
   table.appendChild(tbody);
@@ -573,8 +687,25 @@ function createTable(dataTable) {
           rowHtml += ` ondblclick="showDialog(${d.id})">${(d[key]===undefined?"":d[key])}</td>`;
         } else if (key == "info") {
           rowHtml += `>${(d[key]===undefined?"":d[key]) + ' ' + (DATA_STOCKINFO[d.stockcode]==undefined?"":DATA_STOCKINFO[d.stockcode])}</td>`;
+        } else if (["cashguimo", "liudong", "sudong", "yingyeguimo"].indexOf(key) > -1) {
+          let v = d[key];
+          if (v == null) {
+            rowHtml += `></td>`;
+          } else {
+            let r = getRankValue(key, v);
+            // if (key == "yingyeguimo")
+            //   r = mathUtils.rank(v, 2, 3);
+            // else
+            //   r = mathUtils.rank(v, 0.5, 1);
+            // d['rank2'] = Math.round((d['rank2'] + r) * 100) / 100;
+            rowHtml += `>${v}${r == 0?"":"("+r.toFixed(1)+")"}</td>`;
+            // rowHtml += `>${v}</td>`;
+            if (!STATS[key])
+              STATS[key] = [];
+            STATS[key].push(r);
+          }
         } else
-          rowHtml += `>${(d[key]===undefined?"":d[key])}</td>`;
+          rowHtml += `>${(d[key]===undefined || d[key] === null)?"":d[key]}</td>`;
       }
       row.innerHTML = rowHtml;
       tbody.appendChild(row);
@@ -586,6 +717,36 @@ function createTable(dataTable) {
   //     [12, 1]
   //   ]
   // });
+  printStats();
+}
+
+function getRank2(data) {
+  let arr = ["cashguimo", "liudong", "sudong", "yingyeguimo"];
+  let rank = 0;
+  for (let i in arr) {
+    let k = arr[i];
+    let v = data[k];
+    rank += getRankValue(k, v);
+  }
+  return rank;
+}
+
+function getRankValue(name, v) {
+  if (!v) return 0;
+  let r = 0;
+  if (name == "yingyeguimo")
+    r = mathUtils.rank(v, 2, 3);
+  else
+    r = mathUtils.rank(v, 0.5, 1);
+  return r;
+}
+
+function printStats() {
+  console.log("========================")
+  for (let k in STATS) {
+    let arr = STATS[k];
+    console.log(k, mathUtils.mean(arr), mathUtils.median(arr));
+  }
 }
 
 function showDialog(id) {
@@ -750,11 +911,70 @@ function rgbToHexString(x) {
     return x;
 }
 
+function onStockTracker() {
+  // console.log(CUR_TABLE);
+  stockTracker.off();
+  let ids = [];
+  let checkers = {};
+  let trackings = ['112038', '112287', '122107', '136137', '122328', '122476'];
+
+  for (let k in CUR_TABLE) {
+    let d = CUR_TABLE[k];
+    if (d.color == COLOR.track || trackings.indexOf(d) > -1) {
+      ids.push(d.id);
+      checkers[d.id] = [{
+        "prop": "sell1price",
+        "op": "smaller",
+        "value": 200,
+        "shuiqian": parseFloat(document.getElementById("shuiqianfrom").value),
+        "notification": true
+      }];
+    }
+  }
+  for (let k in CUR_TABLE) {
+    let d = CUR_TABLE[k];
+    if (d.nianxian < 0.3) {
+      let id = d.id;
+      if (ids.indexOf(id) == -1)
+        ids.push(id);
+      checkers[id] = [{
+        "prop": "sell1price",
+        "op": "smaller",
+        "value": 200,
+        "shuiqian": parseFloat(document.getElementById("shuiqianfrom").value)
+      }];
+    }
+  }
+
+  // 122475
+  let blacklist = ['112188', '112284', '112279', '112316'];
+  for (let i = 0; i < blacklist.length; i++) {
+    let idx = ids.indexOf(blacklist[i]);
+    if (idx > -1) {
+      ids.splice(idx, 1);
+    }
+  }
+
+  stockTracker.on(ids, checkers);
+}
+
+function offStockTracker() {
+  stockTracker.off();
+}
+
 module.exports.parseTable = parseTable;
 module.exports.sortTable = sortTable;
 module.exports.updateTableInfo = updateTableInfo;
 module.exports.updateTableAllRows = updateTableAllRows;
+module.exports.updateTable = updateTableRow;
 module.exports.onTableItemClick = onTableItemClick;
 module.exports.showDialog = showDialog;
 module.exports.selectDialogColor = selectDialogColor;
 module.exports.init = init;
+module.exports.onStockTracker = onStockTracker;
+module.exports.offStockTracker = offStockTracker;
+module.exports.getBondName = getBondName;
+module.exports.getBondData = getBondData;
+module.exports.getStockShouyi = getStockShouyi;
+module.exports.printBondInfo = printBondInfo;
+module.exports.getStockNianxian = getStockNianxian;

@@ -172,18 +172,19 @@ function renderHuigou(market) {
         });
 }
 
-
-function init(_con) {
-    con = _con
+function renderHistory(account){
     let chartData = {};
-    for (let k in DATA_CANGWEI) {
+    account = account || 'all';
+    let data_cangwei = accountInfo[account];
+    for (let k in data_cangwei) {
         if (k.startsWith('1') && !k.startsWith('127') && !k.startsWith('131')) {
             chartData[k] = [];
-            chartData[k].unshift(DATA_CANGWEI[k].count);
+            chartData[k].unshift(data_cangwei[k].count);
         }
     }
+    let andStatement = account == 'all'?" true":` account = '${account}'`;
     let chartDate = [];
-    con.query(`select distinct code from jiaogedan where code like '1%' and code not like '131%'`, function (err, r2) {
+    con.query(`select distinct code from jiaogedan where code like '1%' and code not like '131%' and ${andStatement}`, function (err, r2) {
         for (let i = 0; i < r2.length; i++) {
             let code = r2[i].code;
             if (chartData[code] == undefined) {
@@ -191,7 +192,7 @@ function init(_con) {
             }
         }
         console.log(chartData);
-        con.query('select date, code, sum(amount) as "sum" from jiaogedan group by date, code order by date desc', function (err, r) {
+        con.query(`select date, code, sum(amount) as "sum" from jiaogedan where ${andStatement} group by date, code order by date desc`, function (err, r) {
             console.log("chart...");
             for (let i = 0; i < r.length; i++) {
                 //console.log(r[i]);
@@ -205,7 +206,7 @@ function init(_con) {
                     for (let k in chartData) {
                         chartData[k].unshift(chartData[k][0]);
                     }
-                    console.log(date);
+                    // console.log(date);
                 }
                 if (chartData[code])
                     chartData[code][0] = chartData[code][0] - sum * (stockUtils.getMarket(code) == 'sh' ? 10 : 1);
@@ -215,7 +216,7 @@ function init(_con) {
                 chartData[k].shift();
                 let stdDev = math.standardDeviation(chartData[k]);
                 //移除第一个数据 因为通过 x天计算的是x-1天的仓位
-                console.log(k, stdDev);
+                // console.log(k, stdDev);
                 if (stdDev > 100)
                     series.push({
                         name: k,
@@ -269,12 +270,16 @@ function init(_con) {
                 }
 
             });
-            console.log(chartDate);
-            console.log(chartData);
-            renderHuigou();
+            // console.log(chartDate);
+            // console.log(chartData);
         });
     });
+}
 
+function init(_con) {
+    con = _con
+    renderHistory();
+    renderHuigou();
 }
 
 
@@ -386,3 +391,4 @@ function init(_con) {
 // });
 
 module.exports.init = init;
+module.exports.renderHistory = renderHistory;
