@@ -206,7 +206,7 @@ function getAccountInfo(accName) {
     })
     .then(() => {
       if (accName == 'all') {
-        return SQLP.query(con, 'select * from watchlist')
+        return SQLP.query(con, "select * from watchlist where type = 'zhiya'")
           .then(result => {
             for (let i = 0; i < result.length; i++) {
               let res = result[i];
@@ -375,7 +375,7 @@ function init2() {
         //migrateBondData();
         initCangwei();
         renderZhiyaTable();
-        renderNews();
+        renderNewsDefualt();
       });
   });
 }
@@ -521,19 +521,40 @@ function onStockNoteClick(code) {
 }
 //getNormalBond();
 
-function renderNews() {
+function renderNewsDefualt(){
+  renderNews("bond','stock")
+}
+
+function renderNewsAll(){
+  renderNews("cb','eb','bond','stock");
+}
+
+function renderNewsBond(){
+  renderNews("bond");
+}
+
+function renderNewsStock(){
+  renderNews("stock");
+}
+
+function renderNewsCb(){
+  renderNews("cb','eb");
+}
+
+function renderNews(type) {
   let date = new Date();
   let dateStr = DATE.getDashYYYYMMDD(date.addDays(-15));
   console.log('datestr ', dateStr)
-  con.query(`select * from news where date > '${dateStr}' order by date desc, updatetime desc`, function (err, r) {
+  con.query(`select * from news where date > '${dateStr}' and type in ('${type}') order by date desc, updatetime desc`, function (err, r) {
     let list = document.createElement('ul');
     list.style.marginLeft = "-15px";
     let res = document.getElementById('bondNews');
+    res.innerHTML = '';
     res.appendChild(list);
     for (let i = 0; i < r.length; i++) {
       let d = r[i];
       let row = document.createElement('li');
-      row.innerHTML = `<a style="margin-left:-5px" href="${d.url}">${d.date} ${d.title}</a>`;
+      row.innerHTML = `<a style="margin-left:-5px" href="${d.url}">${d.date.substr(4,2)+'-'+d.date.substr(6,2)} ${d.title}</a>`;
       list.appendChild(row);
     }
   });
