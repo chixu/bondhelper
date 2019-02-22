@@ -43,6 +43,7 @@
       <button class="tablinks" value="Table">Table</button>
       <button class="tablinks" value="Info">Info</button>
       <button class="tablinks" value="Cbond">可转债</button>
+      <button class="tablinks" value="Settings">设置</button>
     </div>
     <div id="Table" class="tabcontent">
       <dialog id="dialogbox">
@@ -224,6 +225,19 @@
 
       </table>
       <input type="button" onclick="updateConvertableBond()" value="更新">
+    </div>
+    <div id="Settings" class="tabcontent">
+      <h4>Watchlist</h4>
+      <table id="watchlist">
+
+      </table>
+      <h4>添加 (s->stock b->bond z->zhiya)</h4>
+      Code: 
+      <input type="text" id="watchlist_code" value="">
+      Type: 
+      <input type="text" id="watchlist_type" value="" width="40px">
+      <input type="button" onclick="addWatchList()" value="添加">
+
     </div>
   </div>
 
