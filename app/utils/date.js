@@ -11,6 +11,7 @@ function pad(n, width, z) {
 module.exports = {
   getDateString: getDateString,
   getNowYYYYMMDD: getNowYYYYMMDD,
+  getYYYYMMDD: getYYYYMMDD,
   getDashYYYYMMDD: getDashYYYYMMDD,
   getNowYYYYMMDDHHmm: getNowYYYYMMDDHHmm,
   getNowYYYYMMDDHHmmSS: getNowYYYYMMDDHHmmSS,
@@ -18,8 +19,8 @@ module.exports = {
 };
 
 function getNowYYYYMMDD() {
-  let now = new Date();
-  return now.getFullYear() + pad(now.getMonth()+1, 2) + pad(now.getDate(), 2);
+  // let now = new Date();
+  return getYYYYMMDD();
   // return '20190201';
 }
 
@@ -27,6 +28,12 @@ function getDashYYYYMMDD(d) {
   if (d == undefined)
     d = new Date();
   return d.getFullYear() + '-' + pad(d.getMonth()+1, 2) + '-' + pad(d.getDate(), 2);
+}
+
+function getYYYYMMDD(d) {
+  if (d == undefined)
+    d = new Date();
+  return d.getFullYear() + pad(d.getMonth()+1, 2) + pad(d.getDate(), 2);
 }
 
 function getNowYYYYMMDDHHmm() {

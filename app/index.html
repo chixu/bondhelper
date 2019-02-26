@@ -43,6 +43,7 @@
       <button class="tablinks" value="Table">Table</button>
       <button class="tablinks" value="Info">Info</button>
       <button class="tablinks" value="Cbond">可转债</button>
+      <button class="tablinks" value="stockwatch">关注股票</button>
       <button class="tablinks" value="Settings">设置</button>
     </div>
     <div id="Table" class="tabcontent">
@@ -220,6 +221,21 @@
       <input type="button" onclick="getNormalBond()" value="计算标准券">
       <input type="button" onclick="sendEmail()" value="发送邮件">
     </div>
+    <div id="stockwatch" class="tabcontent">
+      <!-- <table id="curStockWatchTable">
+
+      </table> -->
+      <div id="stockwatchTableContainer"></div>
+      <input type="button" onclick="updateStockWatchTable()" value="更新">
+      <!-- <input type="button" onclick="updateStockWatchTable()" value=""> -->
+      相对大盘
+      <input id="stockwl_relative" type="checkbox" onclick="updateStockWatchTable()">
+      <h4>上证50</h4>
+      <div id="shangzheng50"></div>
+      <input type="button" onclick="updateShangzheng50Table()" value="更新">
+      相对大盘
+      <input id="stockbig_relative" type="checkbox" onclick="updateShangzheng50Table()">
+    </div>
     <div id="Cbond" class="tabcontent">
       <table id="convertableBond">
 
@@ -238,6 +254,14 @@
       <input type="text" id="watchlist_type" value="" width="40px">
       <input type="button" onclick="addWatchList()" value="添加">
 
+
+      <h4>Stock Watchlist</h4>
+      <table id="stockWatchTable"></table>
+      Code: 
+      <input type="text" id="stockwatch_code" value="">
+      理由: 
+      <input type="text" id="stockwatch_comment" value="" width="40px">
+      <input type="button" onclick="addStockWatchList()" value="添加">
     </div>
   </div>
 
