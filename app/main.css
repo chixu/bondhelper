@@ -1,148 +1,167 @@
 /* Style the tab */
 .tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-    background-color: #ccc;
+  background-color: #ccc;
 }
 
 /* Style the tab content */
 .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
 }
 
 .short {
-    width: 100px;
-  }
+  width: 100px;
+}
 
-  .red {
-    color: red;
-  }
+.red {
+  color: red;
+}
 
-  .green {
-    color: green;
-  }
+.green {
+  color: green;
+}
 
-  .ch-tag {
-    margin: 1px;
-    cursor: pointer;
-  }
+.ch-tag {
+  margin: 1px;
+  cursor: pointer;
+}
 
-  .noselect {
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Safari */
-    -khtml-user-select: none;
-    /* Konqueror HTML */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
                                 supported by Chrome and Opera */
-  }
+}
 
-  #dialogbox {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: 50%;
-  }
+#dialogbox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
 
-  .color-option {
-    float: left;
-    display: block;
-    width: 30px;
-    height: 30px;
-    margin: 2px;
-  }
+.color-option {
+  float: left;
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+}
 
-  .color-option-selected {
-    border-color: black;
-    border-width: thick;
-    border: solid;
-  }
+.color-option-selected {
+  border-color: black;
+  border-width: thick;
+  border: solid;
+}
 
-  .updated {
-    border-color: black;
-    border: solid;
-  }
+.updated {
+  border-color: black;
+  border: solid;
+}
 
-  .unupdated {
-    border: none;
-  }
+.unupdated {
+  border: none;
+}
 
-  #container {
-    min-width: 400px;
-    max-width: 800px;
-    height: 600px;
-  }
+#container {
+  min-width: 400px;
+  max-width: 800px;
+  height: 600px;
+}
 
-  #container2 {
-    min-width: 200px;
-    max-width: 800px;
-    height: 300px;
-  }
+#container2 {
+  min-width: 200px;
+  max-width: 800px;
+  height: 300px;
+}
 
-  .notification{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color:#ccc;
-    padding: 5px 50px;
-    color: black;
-    font-size: 13px;
-  }
+.notification {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ccc;
+  padding: 5px 50px;
+  color: black;
+  font-size: 13px;
+}
 
-  .topright{
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 350px;
-    background-color:#ccc;
-    padding: 5px 10px;
-    color: black;
-    font-size: 12px;
-  }
+.topright {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  background-color: #ccc;
+  padding: 5px 10px;
+  color: black;
+  font-size: 12px;
+}
 
-  #searchPanel{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-  }
+#searchPanel {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
 
-  .header-fixed {
-    position: fixed;
-    top: 0px; display:none;
-    background-color:blue;
+.header-fixed {
+  position: fixed;
+  top: 0px;
+  display: none;
+  background-color: blue;
+}
+
+.red-bg {
+  background-color: red;
+}
+
+.green-bg {
+  background-color: #008000
+}
+
+.stock-h-bar {
+  width: 60px;
+  height: 15px;
+  margin: 1px;
+}
+
+#stockbigTableContainer td {
+  width: 62px;
 }

@@ -29,7 +29,8 @@
 <body>
   <div id="notification" class="notification" onclick="notificationClicked()">
   </div>
-  <div class="topright">
+  <div class="topright" id="topRightPanel">
+    <input type="button" value="Hide" onclick="onHideShowTopright()" style="position: fixed;top: 0;right: 0">
     <div id="bondInfo">
     </div>
     <div id="bondHighlight">
@@ -44,6 +45,7 @@
       <button class="tablinks" value="Info">Info</button>
       <button class="tablinks" value="Cbond">可转债</button>
       <button class="tablinks" value="stockwatch">关注股票</button>
+      <button class="tablinks" value="stockwatch2">关注股票2</button>
       <button class="tablinks" value="Settings">设置</button>
     </div>
     <div id="Table" class="tabcontent">
@@ -235,6 +237,12 @@
       <input type="button" onclick="updateShangzheng50Table()" value="更新">
       相对大盘
       <input id="stockbig_relative" type="checkbox" onclick="updateShangzheng50Table()">
+    </div>
+    <div id="stockwatch2" class="tabcontent">
+      <div id="stockbigTableContainer"></div>
+      <input type="button" id="btnUpdateStockbigTable" onclick="updateStockbigTable()" value="每年收益">
+      <input type="button" id="btnUpdateStockbigTable2" onclick="updateStockbigTable()" value="绝对收益">
+      <input type="button" id="btnUpdateStockbigTable3" onclick="updateStockbigTable()" value="图形显示">
     </div>
     <div id="Cbond" class="tabcontent">
       <table id="convertableBond">

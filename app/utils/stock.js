@@ -2,6 +2,13 @@ function getStockIdWithPrefix(id) {
   return getMarket(id) + id;
 }
 
+function getFullName(code) {
+  if (code.length == 6) {
+    code += code.substr(0, 2) == '60' ? '.SH' : '.SZ';
+  }
+  return code;
+}
+
 function getMarket(id) {
   if (id == '131990') return 'sz';
   if (['112'].indexOf(id.toString().substr(0, 3)) > -1) {
@@ -36,5 +43,6 @@ module.exports = {
   isBond: isBond,
   getStockCount: getStockCount,
   getStockIdWithPrefix: getStockIdWithPrefix,
-  isTradingTime: isTradingTime
+  isTradingTime: isTradingTime,
+  getFullName: getFullName
 };
