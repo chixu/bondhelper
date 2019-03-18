@@ -383,56 +383,11 @@ function init2() {
         initCangwei();
         renderZhiyaTable();
         renderNewsDefualt();
-        renderWatchlist();
+        // renderWatchlist();
         // renderStockWatchlist();
         ////migrateBondData();
       });
   });
-}
-
-function renderWatchlist() {
-  let table = document.getElementById("watchlist");
-  table.innerHTML = "";
-  con.query('select * from watchlist', function (err, r) {
-    for (let i = 0; i < r.length; i++) {
-      let d = r[i];
-      let row = document.createElement("tr");
-      row.innerHTML = `<td>${d.code}</td><td>${d.type}</td><td><input type="button" onclick="deleteWatchlist('${d.code + '_' + d.type}')"  value="删除"> </button></td>
-      `;
-      table.appendChild(row);
-    }
-    // renderTable();
-  });
-}
-
-function deleteWatchlist(str) {
-  // console.log('delete', );
-  let d = str.split('_');
-  con.query(`delete from watchlist where code ='${d[0]}' and type = '${d[1]}' `, function (err, r) {
-    if (!err) renderWatchlist();
-    else
-      console.warn(err);
-  });
-}
-
-function addWatchList() {
-  let code = document.getElementById("watchlist_code").value
-  let type = document.getElementById("watchlist_type").value
-  if (code && type) {
-    if (type == 's')
-      type = 'stock';
-    else if (type == 'b')
-      type = 'bond';
-    else if (type == 'z')
-      type = 'zhiya';
-    else
-      return;
-    con.query(`insert into watchlist (code, type) values ('${code}', '${type}')`, function (err, r) {
-      if (!err) renderWatchlist();
-      else
-        console.warn(err);
-    });
-  }
 }
 
 function initCangwei(account) {
