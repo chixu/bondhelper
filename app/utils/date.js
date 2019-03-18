@@ -15,6 +15,7 @@ module.exports = {
   getDashYYYYMMDD: getDashYYYYMMDD,
   getNowYYYYMMDDHHmm: getNowYYYYMMDDHHmm,
   getNowYYYYMMDDHHmmSS: getNowYYYYMMDDHHmmSS,
+  fromYYYYMMDD: fromYYYYMMDD,
   pad: pad
 };
 
@@ -27,23 +28,27 @@ function getNowYYYYMMDD() {
 function getDashYYYYMMDD(d) {
   if (d == undefined)
     d = new Date();
-  return d.getFullYear() + '-' + pad(d.getMonth()+1, 2) + '-' + pad(d.getDate(), 2);
+  return d.getFullYear() + '-' + pad(d.getMonth() + 1, 2) + '-' + pad(d.getDate(), 2);
 }
 
 function getYYYYMMDD(d) {
   if (d == undefined)
     d = new Date();
-  return d.getFullYear() + pad(d.getMonth()+1, 2) + pad(d.getDate(), 2);
+  return d.getFullYear() + pad(d.getMonth() + 1, 2) + pad(d.getDate(), 2);
 }
 
 function getNowYYYYMMDDHHmm() {
   let now = new Date();
-  return now.getFullYear() + pad(now.getMonth()+1, 2) + pad(now.getDate(), 2) + pad(now.getHours(), 2) + pad(now.getMinutes(), 2);
+  return now.getFullYear() + pad(now.getMonth() + 1, 2) + pad(now.getDate(), 2) + pad(now.getHours(), 2) + pad(now.getMinutes(), 2);
 }
 
 function getNowYYYYMMDDHHmmSS() {
   let now = new Date();
-  return now.getFullYear() + pad(now.getMonth()+1, 2) + pad(now.getDate(), 2) + pad(now.getHours(), 2) + pad(now.getMinutes(), 2) + pad(now.getSeconds(), 2);
+  return now.getFullYear() + pad(now.getMonth() + 1, 2) + pad(now.getDate(), 2) + pad(now.getHours(), 2) + pad(now.getMinutes(), 2) + pad(now.getSeconds(), 2);
+}
+
+function fromYYYYMMDD(str) {
+  return new Date(str.substr(0, 4) + '-' + str.substr(4, 2) + '-' + str.substr(6, 2));
 }
 
 Date.prototype.addDays = function (days) {

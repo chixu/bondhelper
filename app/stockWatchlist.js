@@ -1,5 +1,6 @@
 var con;
 const DATE = require("./utils/date");
+const sqlPromise = require("./utils/sqlPromise");
 STOCK_WATCHTABLE_DATA = {};
 
 
@@ -76,19 +77,32 @@ function updateStockWatchTable() {
   let relative = document.getElementById('stockwl_relative').checked;
   console.log(relative);
   div.innerHTML = '';
-  con.query('select distinct startdate from stockwatchlist order by startdate', function (err, r) {
-    con.query(`select * from stockhistory where code = '000001.SH' and date>= '${r[0].startdate}'`, function (err, r2) {
-      let indexData = {};
-      for (let i = 0; i < r2.length; i++) {
-        let d = r2[i];
-        indexData[d.date] = d;
-      }
-      for (let i = 0; i < r.length; i++) {
-        let date = r[i].startdate;
-        renderStockWatchDateTable(date, indexData, relative);
-      }
-    });
-  });
+  // con.query('select distinct startdate from stockwatchlist order by startdate', function (err, r) {
+  //   // con.query(`select * from stockhistory where code = '000001.SH' and date>= '${r[0].startdate}'`, function (err, r2) {
+
+
+  //   // });
+
+
+  // });
+  sqlPromise.getIndexLastDate(con)
+    .then(lastday => {
+      sqlPromise.query(con, 'select distinct startdate from stockwatchlist order by startdate')
+        .then(r => {
+          sqlPromise.getStockHistory(con, r[0].startdate).then(r2 => {
+            let indexData = {};
+            for (let i = 0; i < r2.length; i++) {
+              let d = r2[i];
+              indexData[d.date] = d;
+            }
+            for (let i = 0; i < r.length; i++) {
+              let date = r[i].startdate;
+              renderStockWatchDateTable(date, lastday, indexData, relative);
+            }
+          });
+        })
+    })
+
 
 
   // let table = document.getElementById("curStockWatchTable");
@@ -109,15 +123,25 @@ function updateStockWatchTable() {
 
 
 
-function renderStockWatchDateTable(date, indexData, relative = false) {
+function renderStockWatchDateTable(date, lastday, indexData, relative = false) {
   let div = document.getElementById("stockwatchTableContainer");
-  con.query(`select * from stockwatchlist
-    left join stockhistory
-    on stockwatchlist.code = stockhistory.code
-    left join stockbasic
-    on stockwatchlist.code = stockbasic.ts_code
-    where stockhistory.date >= stockwatchlist.startdate and stockwatchlist.startdate = '${date}'
-    order by stockwatchlist.code, stockhistory.date`, function (err, r) {
+  // con.query(`select * from stockwatchlist
+  //   left join stockhistory
+  //   on stockwatchlist.code = stockhistory.code
+  //   left join stockbasic
+  //   on stockwatchlist.code = stockbasic.ts_code
+  //   where stockhistory.date >= stockwatchlist.startdate and stockwatchlist.startdate = '${date}'
+  //   order by stockwatchlist.code, stockhistory.date`, function (err, r) {
+  let nextDay = DATE.getYYYYMMDD(DATE.fromYYYYMMDD(date).addDays(1));
+  // console.log(nextDay);
+  let query = `select * from stockhistory
+  left join stockbasic
+  on stockhistory.code = stockbasic.ts_code
+  where stockhistory.code in (select code from stockwatchlist where stockwatchlist.startdate = '${date}')
+  and stockhistory.date in (select date from tradedate where (date > '${date}' and type = 'l') or date = '${lastday}' or date = '${nextDay}')
+  order by stockhistory.code, stockhistory.date`;
+  // console.log(query);
+  con.query(query, function (err, r) {
     let table = document.createElement("table");
     let thead = document.createElement("thead");
     let theadrow = document.createElement("tr");
