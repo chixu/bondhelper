@@ -1,17 +1,19 @@
-function insertOrUpdate(table, sqlData, numCols, keys) {
+function insertOrUpdate(table, sqlData, numCols, updateCols) {
     if (numCols == undefined) numCols = [];
-    if (keys == undefined) keys = [];
+    if (updateCols == undefined) updateCols = [];
     let colvaluestr = '';
-    for (let k in sqlData) {
-        let col = k;
+    for (let k in updateCols) {
+        let col = updateCols[k];
         colvaluestr += col + '='
         if (numCols.indexOf(col) == -1)
-            colvaluestr += "'" + sqlData[k] + "',";
+            colvaluestr += "'" + sqlData[col] + "',";
         else
-            colvaluestr += sqlData[k] + ",";
+            colvaluestr += sqlData[col] + ",";
     }
     colvaluestr = colvaluestr.substr(0, colvaluestr.length - 1);
-    return insert(table, cols, values, numCols) + ' ON DUPLICATE KEY UPDATE ' + colvaluestr;
+    let sql = insert(table, sqlData, numCols) + ' ON DUPLICATE KEY UPDATE ' + colvaluestr;
+    // console.log(sql);
+    return sql;
 }
 
 function insert(table, sqlData, numCols) {

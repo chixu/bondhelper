@@ -46,6 +46,7 @@
       <button class="tablinks" value="Cbond">可转债</button>
       <button class="tablinks" value="stockwatch">关注股票</button>
       <button class="tablinks" value="stockwatch2">关注股票2</button>
+      <button class="tablinks" value="stockliandong">联动</button>
       <button class="tablinks" value="Settings">设置</button>
     </div>
     <div id="Table" class="tabcontent">
@@ -212,6 +213,8 @@
         <h4>标准券</h4>
         <div id="bondResult" class="w3-ul">
         </div>
+        <input type="button" onclick="getNormalBond()" value="计算标准券">
+        <input type="button" onclick="sendEmail()" value="发送邮件">
         <h4>公告</h4>
         <input type="button" onclick="renderNewsAll()" value="All">
         <input type="button" onclick="renderNewsBond()" value="债券">
@@ -220,8 +223,6 @@
         <div id="bondNews" class="w3-ul">
         </div>
       </div>
-      <input type="button" onclick="getNormalBond()" value="计算标准券">
-      <input type="button" onclick="sendEmail()" value="发送邮件">
     </div>
     <div id="stockwatch" class="tabcontent">
       <!-- <table id="curStockWatchTable">
@@ -243,6 +244,10 @@
       <input type="button" id="btnUpdateStockbigTable" onclick="updateStockbigTable()" value="每年收益">
       <input type="button" id="btnUpdateStockbigTable2" onclick="updateStockbigTable()" value="绝对收益">
       <input type="button" id="btnUpdateStockbigTable3" onclick="updateStockbigTable()" value="图形显示">
+    </div>
+    <div id="stockliandong" class="tabcontent">
+      <!-- <div id="stockbigTableContainer"></div> -->
+      <input type="button" id="btnStockliandong" onclick="getLiandong()" value="联动">
     </div>
     <div id="Cbond" class="tabcontent">
       <table id="convertableBond">
@@ -267,6 +272,8 @@
       <table id="stockWatchTable"></table>
       Code: 
       <input type="text" id="stockwatch_code" value="">
+      Date: 
+      <input type="text" id="stockwatch_date" value="" width="40px">
       理由: 
       <input type="text" id="stockwatch_comment" value="" width="40px">
       <input type="button" onclick="addStockWatchList()" value="添加">

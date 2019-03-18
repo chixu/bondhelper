@@ -29,6 +29,7 @@ let ZHIYALV_WATCH_LIST = {};
 const BOND_TABLE = require('./bondTable');
 const STOCK_BIG_TABLE = require('./stockBig');
 const STOCK_TABLE = require('./stockTable');
+const STOCK_LIANDONG = require('./stockLiandong');
 const NEWS_NOTIFICATION = require('./components/newsNotification');
 const STOCK_NOTIFICATION = require('./components/stockNotification');
 const BOND_HIGHLIGHT = require('./components/bondHighlight');
@@ -371,6 +372,7 @@ function init2() {
         BOND_TABLE.init(con);
         STOCK_TABLE.init(con);
         STOCK_BIG_TABLE.init(con);
+        STOCK_LIANDONG.init(con);
         CHART.init(con);
         NEWS_NOTIFICATION.init(con);
         CB_DATA.init(con);
@@ -915,15 +917,34 @@ function renderStockWatchlist() {
 function addStockWatchList() {
 
   let dateStr = DATE.getNowYYYYMMDD();
-  let code = document.getElementById("stockwatch_code").value
-  let comment = document.getElementById("stockwatch_comment").value
+  let code = document.getElementById("stockwatch_code").value;
+  let comment = document.getElementById("stockwatch_comment").value;
+  let date = document.getElementById("stockwatch_date").value;
+  if (date)
+    dateStr = date;
   if (code) {
-    code += code.substr(0, 2) == '60' ? '.SH' : '.SZ';
-    con.query(`insert into stockwatchlist (code, comment, startdate) values ('${code}', '${comment}', '${dateStr}')`, function (err, r) {
-      if (!err) renderStockWatchlist();
-      else
-        console.warn(err);
-    });
+    if (code.match(/\d{6}/)) {
+      code += code.substr(0, 2) == '60' ? '.SH' : '.SZ';
+      con.query(`insert into stockwatchlist (code, comment, startdate) values ('${code}', '${comment}', '${dateStr}')
+    ON DUPLICATE KEY UPDATE comment = '${comment}', startdate = '${dateStr}'`, function (err, r) {
+        if (!err) renderStockWatchlist();
+        else
+          console.warn(err);
+      });
+    } else {
+      con.query(`select * from  stockbasic where name = '${code}'`, function (err, r) {
+        if (err) console.warn(err);
+        if (r && r.length > 0) {
+          code = r[0].ts_code;
+          con.query(`insert into stockwatchlist (code, comment, startdate) values ('${code}', '${comment}', '${dateStr}')
+    ON DUPLICATE KEY UPDATE comment = '${comment}', startdate = '${dateStr}'`, function (err, r) {
+            if (!err) renderStockWatchlist();
+            else
+              console.warn(err);
+          });
+        }
+      });
+    }
   }
 }
 
@@ -1026,13 +1047,13 @@ function renderStockWatchDateTable(date, indexData, relative = false) {
   });
 }
 
-function onHideShowTopright(e){
+function onHideShowTopright(e) {
   console.log(event.target.value);
   let panel = document.getElementById("topRightPanel");
-  if(event.target.value == "Hide"){
+  if (event.target.value == "Hide") {
     panel.style.display = "none";
     event.target.value = "Show";
-  }else{
+  } else {
     panel.style.display = "block";
     event.target.value = "Hide";
 
