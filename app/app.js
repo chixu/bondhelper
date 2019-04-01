@@ -31,6 +31,7 @@ const STOCK_BIG_TABLE = require('./stockBig');
 const STOCK_TABLE = require('./stockTable');
 const STOCK_LIANDONG = require('./stockLiandong');
 const STOCK_WATCHLIST = require('./stockWatchlist');
+const JIAOGEDAN_ANALYSIS = require('./jgdAnalysis');
 const NEWS_NOTIFICATION = require('./components/newsNotification');
 const STOCK_NOTIFICATION = require('./components/stockNotification');
 const BOND_HIGHLIGHT = require('./components/bondHighlight');
@@ -375,6 +376,7 @@ function init2() {
         STOCK_BIG_TABLE.init(con);
         STOCK_LIANDONG.init(con);
         STOCK_WATCHLIST.init(con);
+        JIAOGEDAN_ANALYSIS.init(con);
         CHART.init(con);
         NEWS_NOTIFICATION.init(con);
         CB_DATA.init(con);

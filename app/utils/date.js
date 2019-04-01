@@ -16,6 +16,8 @@ module.exports = {
   getNowYYYYMMDDHHmm: getNowYYYYMMDDHHmm,
   getNowYYYYMMDDHHmmSS: getNowYYYYMMDDHHmmSS,
   fromYYYYMMDD: fromYYYYMMDD,
+  diffInDays: diffInDays,
+  diffYYYYMMDDInDays: diffYYYYMMDDInDays,
   pad: pad
 };
 
@@ -49,6 +51,18 @@ function getNowYYYYMMDDHHmmSS() {
 
 function fromYYYYMMDD(str) {
   return new Date(str.substr(0, 4) + '-' + str.substr(4, 2) + '-' + str.substr(6, 2));
+}
+
+//d1 - d2 in days
+function diffInDays(d1, d2) {
+  // console.log(d1.getTime(), d2.getTime());
+  var timeDiff = Math.abs(d2.getTime() - d1.getTime());
+  return Math.round(timeDiff / (1000 * 3600 * 24));
+}
+
+//d1 - d2 in days
+function diffYYYYMMDDInDays(d1, d2) {
+  return diffInDays(fromYYYYMMDD(d1), fromYYYYMMDD(d2));
 }
 
 Date.prototype.addDays = function (days) {

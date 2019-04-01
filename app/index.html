@@ -47,6 +47,7 @@
       <button class="tablinks" value="stockwatch">关注股票</button>
       <button class="tablinks" value="stockwatch2">关注股票2</button>
       <button class="tablinks" value="stockliandong">联动</button>
+      <button class="tablinks" value="jiaogedan">交割单</button>
       <button class="tablinks" value="Settings">设置</button>
     </div>
     <div id="Table" class="tabcontent">
@@ -102,7 +103,6 @@
             <td>
               <input type="button" value="保存" />
             </td>
-            <td />
             <td>
               <textarea id="idblacklist" type="text" rows="1">
               </textarea>
@@ -254,6 +254,13 @@
 
       </table>
       <input type="button" onclick="updateConvertableBond()" value="更新">
+    </div>
+    <div id="jiaogedan" class="tabcontent">
+      <table id="jiaogedanPanel">
+
+      </table>
+      <input type="button" onclick="getJiaogedan()" value="交易记录">
+      <input type="button" onclick="getJiaogedan('zzdx')" value="转债打新">
     </div>
     <div id="Settings" class="tabcontent">
       <h4>Watchlist</h4>
