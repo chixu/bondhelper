@@ -13,6 +13,14 @@ const stockAPIPara = {
     sell1price: 21,
 }
 
+
+var fenjiList = {
+    '502048': ['502049', '502050'],
+    '502010': ['502011', '502012'],
+    '502003': ['502004', '502005'],
+    '502053': ['502054', '502055'],
+}
+
 var lastupdate = {};
 var checkListExtension = {}
 var tick = 0;
@@ -111,17 +119,6 @@ var checkList = {
         "op": "greater",
         "value": 1000
     }],
-    "122125": [{
-        "name": "sell1price"
-    }, {
-        "name": "buy1price"
-    }, {
-        "name": "chengjiao"
-    }, {
-        "name": "sell1count",
-        "op": "greater",
-        "value": 1000
-    }],
     "136511": [{
         "name": "sell1price"
     }, {
@@ -169,13 +166,6 @@ var checkList = {
     }, {
         "name": "chengjiao"
     }],
-    "122105": [{
-        "name": "sell1price"
-    }, {
-        "name": "buy1price"
-    }, {
-        "name": "chengjiao"
-    }],
     "127053": [{
         "name": "sell1price"
     }, {
@@ -198,17 +188,17 @@ var checkList = {
         "op": "greater",
         "value": 1000
     }],
-    "122927": [{
-        "name": "sell1price"
-    }, {
-        "name": "buy1price"
-    }, {
-        "name": "chengjiao"
-    }, {
-        "name": "sell1count",
-        "op": "greater",
-        "value": 1000
-    }],
+    // "122927": [{
+    //     "name": "sell1price"
+    // }, {
+    //     "name": "buy1price"
+    // }, {
+    //     "name": "chengjiao"
+    // }, {
+    //     "name": "sell1count",
+    //     "op": "greater",
+    //     "value": 1000
+    // }],
 }
 
 function init(_con) {
@@ -250,14 +240,90 @@ function checkNews2() {
         if (checkTimer[k] == undefined || tick % checkTimer[k] == 0)
             ids.push(k);
     }
+    for (let k in fenjiList) {
+        ids.push(k, fenjiList[k][0], fenjiList[k][1]);
+    }
     tick++;
     // if (true) {
-    if (stockUtils.isTradingTime()) {
+    if (stockUtils.isTradingTime() || tick == 1) {
         promise = promise.then(() => getStockInfos(ids));
     }
     promise.then(() => new Promise(resolve => setTimeout(resolve, 5000)))
         .then(() => checkNews2());
     return promise;
+}
+
+
+//buy 1 = 100 * 10.1;
+//buy 2 = 50 * 10;
+//buy 3 = 100 * 9.9;
+//getAvgPrice(data, count=200, type='buy')
+//= (100*10.1 + 50*10 + 50*9.9)/200
+function getAvgPrice(data, count, type = 's') {
+    let counts = [];
+    let prices = [];
+    for (let i = 0; i < 5; i++) {
+        counts.push(parseFloat(data[(type == 's' ? stockAPIPara.sell1count : stockAPIPara.buy1count) + 2 * i]));
+        prices.push(parseFloat(data[(type == 's' ? stockAPIPara.sell1price : stockAPIPara.buy1price) + 2 * i]));
+    }
+    // console.log(counts, prices);
+    let total = 0;
+    let countLeft = count;
+    for (let i = 0; i < 5; i++) {
+        if (countLeft <= counts[i]) {
+            total += countLeft * prices[i];
+            return total / count;
+        } else {
+            total += counts[i] * prices[i];
+            countLeft -= counts[i];
+        }
+    }
+    return 0;
+}
+
+function handleFenji(stockNum, dataarr, i) {
+    if (stockNum in fenjiList) {
+        let d = parseSinaSingleData(dataarr[i]);
+        let da = parseSinaSingleData(dataarr[i + 1]);
+        let db = parseSinaSingleData(dataarr[i + 2]);
+        //sell mu but a and b
+        // let sellM = parseFloat(d[stockAPIPara.sell1price]);
+        // let buyM = parseFloat(d[stockAPIPara.buy1price]);
+        // let sellA = parseFloat(da[stockAPIPara.sell1price]);
+        // let buyA = parseFloat(da[stockAPIPara.buy1price]);
+        // let sellB = parseFloat(db[stockAPIPara.sell1price]);
+        // let buyB = parseFloat(db[stockAPIPara.buy1price]);
+
+        let sellM = getAvgPrice(d, 500, 's');
+        let buyM = getAvgPrice(d, 500, 'b');
+        let sellA = getAvgPrice(da, 250, 's');
+        let buyA = getAvgPrice(da, 250, 'b');
+        let sellB = getAvgPrice(db, 250, 's');
+        let buyB = getAvgPrice(db, 250, 'b');
+        let buyMRatio = 0,
+            buyABRatio = 0;
+        if (buyA && buyB && sellM)
+            buyMRatio = ((buyA + buyB) / sellM / 2 - 1) * 100;
+        if (buyM && sellA && sellB)
+            buyABRatio = ((buyM) / (sellA + sellB) * 2 - 1) * 100;
+        // console.log(stockNum, sellM, buyM, sellA, buyA, sellB, buyB);
+        // console.log(stockNum, buyMRatio, buyABRatio);
+        if (buyMRatio > 0.2) {
+            console.warn(stockNum, 'buyM!', buyMRatio.toFixed(3), sellM, buyA, buyB);
+        }
+        if (buyABRatio > 0.2) {
+            console.warn(stockNum, 'buyAB!', buyABRatio.toFixed(3), sellA, sellB, buyM);
+        }
+    }
+}
+
+function parseSinaSingleData(str) {
+    let quote1 = str.indexOf('"');
+    let quote2 = str.lastIndexOf('"');
+    let resultStr = str.substr(quote1 + 1, quote2 - quote1 - 1);
+    if (resultStr.trim() == "") return undefined;
+    let result = resultStr.split(',');
+    return result;
 }
 
 function getStockInfos(stockNums) {
@@ -273,6 +339,10 @@ function getStockInfos(stockNums) {
         for (let i = 0; i < dataarr.length; i++) {
             let data = dataarr[i];
             let stockNum = stockNums[i];
+            if (stockNum && stockNum.substr(0, 2) == '50') {
+                handleFenji(stockNum, dataarr, i);
+                continue;
+            }
             if (BOND_TABLE.getBondData(stockNum) == undefined) {
                 // console.log(stockNum, 'is undefined');
                 continue;

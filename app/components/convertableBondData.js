@@ -91,7 +91,7 @@ function initTable() {
                 rowHtml += `<td id="${id+'_'+col}" `;
                 rowHtml += `>${(d[col]===undefined?"":d[col])}</td>`;
             }
-            console.log(id, rowHtml);
+            // console.log(id, rowHtml);
             row.innerHTML = rowHtml;
 
             tbody.appendChild(row);
